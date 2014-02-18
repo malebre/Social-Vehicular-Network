@@ -1,0 +1,81 @@
+#!/usr/bin/env python
+import os,subprocess,sys,shutil
+import libxml2,lxml
+from libxml2 import xmlAttr
+from lxml import etree
+
+#recuperation des donnees de depart et arrivee sur la ville de cologne
+	
+doc=libxml2.parseFile("maptripinfoWOSimple.out.xml")
+ctxt=doc.xpathNewContext()
+Id=map(xmlAttr.getContent,ctxt.xpathEval("//tripinfo/@id"))
+Time=map(xmlAttr.getContent,ctxt.xpathEval("//tripinfo/@depart"))
+Depart=map(xmlAttr.getContent,ctxt.xpathEval("//tripinfo/@departLane"))
+Arrival=map(xmlAttr.getContent,ctxt.xpathEval("//tripinfo/@arrivalLane"))
+
+def TransStrInt(List,Repere):
+	i=0
+	NewList=[]
+	while i<len(List):
+		NewList.append([float(List[i]),Repere[i]])
+		i=i+1
+	return NewList
+
+TimeInt=TransStrInt(Time,Id)
+
+TimeInt.sort()
+
+def TransIntStr(List):
+	i=0
+	while i<len(List):
+		List[i][0]=str(List[i][0])
+		i=i+1
+	return List
+
+TimeInt=TransIntStr(TimeInt)
+
+
+def Classification(Repere,ListInt,List):
+	i=0
+	NewList=[]
+	while i<len(List):
+		index=Repere.index(ListInt[i][1])
+		NewList.append(List[index])
+		i=i+1
+	return NewList
+
+DepartLane=Classification(Id,TimeInt,Depart)
+ArrivalLane=Classification(Id,TimeInt,Arrival)
+
+
+
+
+def Edge(List):
+	j=0
+	while j<len(List):
+		if List[j][len(List[j])-2]=='_':
+			List[j]=List[j].rstrip(List[j][len(List[j])-1])
+			List[j]=List[j].rstrip('_')
+		j=j+1
+	return List
+DepartEdge=Edge(DepartLane)
+ArrivalEdge=Edge(ArrivalLane)
+
+ 
+trips = etree.Element("trips")
+i=0
+while i<len(Id):
+	trip = etree.SubElement(trips, "trip")
+	trip.set("id", TimeInt[i][1])
+	trip.set("depart",TimeInt[i][0])
+	trip.set("from", DepartEdge[i])
+	trip.set("to",ArrivalEdge[i]) 
+	i=i+1
+index = open("map.alltrips.xml", "w")
+index.write(etree.tostring(trips, encoding='utf-8', xml_declaration=True, pretty_print=True))
+index.close()
+print "ok"
+
+
+
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on mar. 04 févr. 2014 10:32:22 CET by SUMO gui Version 0.19.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/sumo-gui.exeConfiguration.xsd">
+
+    <input>
+        <net-file value="data/map.net.xml"/>
+        <route-files value="data/map.rou.xml"/>
+    </input>
+
+    <output>
+        <tripinfo-output value="data/maptripinfoLocal.out.xml"/>
+        <save-state.prefix value="data/state"/>
+    </output>
+
+    <time>
+        <begin value="27000"/>
+        <end value="27900"/>
+    </time>
+
+    <processing>
+        <route-steps value="200"/>
+        <no-internal-links value="false"/>
+        <scale value="0.6"/>
+        <time-to-teleport value="160"/>
+        <sloppy-insert value="false"/>
+        <lanechange.allow-swap value="true"/>
+    </processing>
+
+    <report>
+        <verbose value="true"/>
+        <no-warnings value="false"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <traci_server>
+        <remote-port value="8813"/>
+    </traci_server>
+
+</configuration>
+-->
+
+<tripinfos>
+    <tripinfo id="136022_136022_411" depart="27003.00" departLane="23800191#2_0" departPos="5.10" departSpeed="0.00" departDelay="3.00" arrival="27009.00" arrivalLane="23800191#2_0" arrivalPos="38.41" arrivalSpeed="9.23" duration="6.00" routeLength="33.31" waitSteps="0" rerouteNo="0" devices="tripinfo_136022_136022_411" vType="DEFAULT_VEHTYPE" vaporized=""/>
+    <tripinfo id="182087_182087_431" depart="27000.00" departLane="4380937#2_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="27011.00" arrivalLane="4380937#3_0" arrivalPos="72.76" arrivalSpeed="13.58" duration="11.00" routeLength="67.66" waitSteps="0" rerouteNo="1" devices="tripinfo_182087_182087_431" vType="DEFAULT_VEHTYPE" vaporized=""/>
+    <tripinfo id="105435_105435_398" depart="27003.00" departLane="145474196#1_0" departPos="5.10" departSpeed="0.00" departDelay="3.00" arrival="27014.00" arrivalLane="145474196#1_0" arrivalPos="94.12" arrivalSpeed="11.25" duration="11.00" routeLength="89.02" waitSteps="0" rerouteNo="0" devices="tripinfo_105435_105435_398" vType="DEFAULT_VEHTYPE" vaporized=""/>
+    <tripinfo id="72912_72912_384" depart="27003.00" departLane="9207803_0" departPos="5.10" departSpeed="0.00" departDelay="3.00" arrival="27014.00" arrivalLane="9207803_0" arrivalPos="69.23" arrivalSpeed="7.47" duration="11.00" routeLength="64.13" waitSteps="0" rerouteNo="0" devices="tripinfo_72912_72912_384" vType="DEFAULT_VEHTYPE" vaporized=""/>
+    <tripinfo id="92380_92380_392" depart="27000.00" departLane="-154755073#3_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="27015.00" arrivalLane="-154755073#3_0" arrivalPos="102.52" arrivalSpeed="8.03" duration="15.00" routeLength="97.42" waitSteps="0" rerouteNo="0" devices="tripinfo_92380_92380_392" vType="DEFAULT_VEHTYPE" vaporized=""/>
+    <tripinfo id="75851_75851_386" depart="27000.00" departLane="28542995#2_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="27015.00" arrivalLane="23493181#0_0" arrivalPos="88.20" arrivalSpeed="11.07" duration="15.00" routeLength="83.10" waitSteps="0" rerouteNo="1" devices="tripinfo_75851_75851_386" vType="DEFAULT_VEHTYPE" vaporized=""/>
+</tripinfos>

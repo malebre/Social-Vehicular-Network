@@ -1,0 +1,358 @@
+#!/usr/bin/env python
+import os,subprocess,sys,shutil,sumolib
+from sumolib import checkBinary
+import traci,libxml2,random
+from libxml2 import xmlAttr
+
+#intersection de deux listes
+def intersect(a, b):
+     return list(set(a) & set(b))
+
+
+#Creation des listes de donnees utiles
+
+def createList(FichierMapXml):
+	doc=libxml2.parseFile(FichierMapXml)
+	ctxt=doc.xpathNewContext()
+
+	#coordonnees des intersections autre que les feux
+	XJuncAll=map(xmlAttr.getContent,ctxt.xpathEval("//junction[@type='priority']/@x"))
+	YJuncAll=map(xmlAttr.getContent,ctxt.xpathEval("//junction[@type='priority']/@y"))
+
+	#nom des liens entrant sur chaque intersection
+	EdgeIncAll=map(xmlAttr.getContent,ctxt.xpathEval("//junction[@type='priority']/@incLanes"))
+
+	#nom de chaque intersection
+	JuncIdAll=map(xmlAttr.getContent,ctxt.xpathEval("//junction[@type='priority']/@id"))
+
+	#nom des liens 
+	EdgeIdAll=map(xmlAttr.getContent,ctxt.xpathEval("//edge[@priority]/@id"))
+
+	#nom des departs de chaque lien (from-to)
+	EdgeFromAll=map(xmlAttr.getContent,ctxt.xpathEval("//edge[@priority]/@from"))
+	
+	#nom des voies
+	LaneIdAll=map(xmlAttr.getContent,ctxt.xpathEval("//edge/lane/@id"))
+
+
+	return XJuncAll,YJuncAll,EdgeIncAll,JuncIdAll,EdgeIdAll,EdgeFromAll,LaneIdAll
+
+
+#Liste des vehicules avec choix des applications x vehicules dans greenway, y dans quickway, z dans smoothway
+def listVehApplications(x,y,z):
+	X=x
+	Y=x+y
+	Z=x+y+z
+	if Z>100:
+		print "Mauvais taux choisis"
+		exit()
+	ListGreenWay=[]
+	ListQuickWay=[]
+	ListSmoothWay=[]
+	doc=libxml2.parseFile("data/maptripinfoWO.out.xml")
+	ctxt=doc.xpathNewContext()
+	Id= map(xmlAttr.getContent,ctxt.xpathEval("//@id"))
+	TotVeh=len(Id)
+	i=0
+	while i<len(Id):
+		rand=random.randint(0,100)
+		if rand<X:
+			ListGreenWay.append(Id[i])		
+		if rand>=X and rand<Y:
+			ListQuickWay.append(Id[i])
+
+		if rand>Y and rand<=Z and Z!=0:
+			ListSmoothWay.append(Id[i])
+		i=i+1
+	return ListGreenWay,ListQuickWay,ListSmoothWay
+
+	
+
+#Choix des intersections ou le reroutage s'effectura
+
+def rateOfJunctionChosen(Liste):
+	CreateList=createList("data/map.net.xml")
+	XJuncAll=CreateList[0]
+	YJuncAll=CreateList[1]
+	EdgeIncAll=CreateList[2]
+	JuncIdAll=CreateList[3]
+	XJunc=[]
+	YJunc=[]
+	EdgeInc=[]
+	JuncId=[]
+	#print len(JuncIdAll)
+	N=0
+	#rate=float(rate)
+	#while N<len(XJuncAll):
+		#rand=random.uniform(0,1)
+		#if rand<rate:
+	while N<len(XJuncAll):
+		if (JuncIdAll[N] in Liste):
+			XJunc.append(XJuncAll[N])
+			YJunc.append(YJuncAll[N])		
+			EdgeInc.append(EdgeIncAll[N])
+			JuncId.append(JuncIdAll[N])
+			N=N+1
+		else:
+			N=N+1
+	return XJunc,YJunc,EdgeInc,JuncId
+
+#Liste des coordonnees de chaque intersection
+
+def listInter(X,Y):
+	i=0
+	ListInter=[]
+	while i<len(X):
+		ListInter.append([X[i],Y[i]])
+		i=i+1
+	return ListInter
+
+#Sauvegarde des identifiants des intersections ou s'effectue le reroutage
+
+def save(Fichier,JuncId):
+	f = open(Fichier, "w")
+
+	for element in JuncId:
+		f.write(element+' ')
+		f.write('\n')
+	f.close()
+
+
+#Liste des liens entrants de chaque intersection
+
+def listEdgeInc(EdgeInc):
+	j=0
+	ListEdgeInc=[]
+	while j<len(EdgeInc):
+		ListEdgeInc.append(EdgeInc[j].split(" "))
+		k=0
+		while k<len(ListEdgeInc[j]):
+			ListEdgeInc[j][k]=ListEdgeInc[j][k].rstrip('0')
+			ListEdgeInc[j][k]=ListEdgeInc[j][k].rstrip('_')
+			k=k+1
+		j=j+1
+	return ListEdgeInc
+
+#Liste des voies sortantes de chaque intersection
+
+def listLaneOut(JuncId):
+	CreateList=createList("data/map.net.xml")
+	EdgeFrom=CreateList[5]
+	EdgeId=CreateList[4]
+	LaneId=CreateList[6]
+	ListLaneOut=[]
+	l=0
+	while l<len(JuncId):
+		m=0
+		Liste=[]
+		while  m<len(EdgeFrom):
+			if (JuncId[l]==EdgeFrom[m]):
+				for lane in LaneId:
+					if EdgeId[m]==traci.lane.getEdgeID(lane):
+						Liste.append(lane)
+				m=m+1
+			else:
+				m=m+1
+		ListLaneOut.append(Liste)
+		l=l+1
+	return ListLaneOut		
+	
+
+#Liste des liens sortants de chaque intersection
+
+def listEdgeOut(JuncId):
+	CreateList=createList("data/map.net.xml")
+	EdgeFrom=CreateList[5]
+	EdgeId=CreateList[4]
+	ListEdgeOut=[]
+	l=0
+	while l<len(JuncId):
+		m=0
+		Liste=[]
+		while  m<len(EdgeFrom):
+			if (JuncId[l]==EdgeFrom[m]):
+				Liste.append(EdgeId[m])
+				m=m+1
+			else:
+				m=m+1
+		ListEdgeOut.append(Liste)
+		l=l+1
+	return ListEdgeOut
+
+#initialisation de la liste des vehicules visitant chaque intersection
+
+def juncVisitedVehID(ListInter):
+	JuncVisitedVehID=len(ListInter)*range(1)
+	i=0
+	while i<len(JuncVisitedVehID):
+		JuncVisitedVehID[i]=[]
+		i=i+1
+	return JuncVisitedVehID
+
+
+#Liste des temps de passage de chaque lien sortant de l'intersection
+
+def currentTravelEdgeOut(index,ListEdgeOut,step):
+	CurrentTravelEdgeOut=[]
+	for edge in ListEdgeOut[index]:
+		#on recupere temps de passage sans vehicule (cas ideal)
+		lane=edge+'_0'
+		L=traci.lane.getLength(lane)
+		S=traci.lane.getMaxSpeed(lane)
+		#poids initial : longueur/Vitesse max
+		T=L/S
+		traci.edge.adaptTraveltime(edge,traci.edge.getTraveltime(edge))
+		CurrentTravelEdgeOut.append(traci.edge.getAdaptedTraveltime(edge,step)-T)		
+	return CurrentTravelEdgeOut
+
+#Liste des taux d'occupation et vitesses maximales de chaque lien sortant de l'intersection
+
+def occupancyEdgeOut(index,ListEdgeOut,step):
+	OccupancyEdgeOut=[]
+	MaxSpeedEdgeOut=[]
+	for edge in ListEdgeOut[index]:
+		#on recupere la vitesse maximale
+		lane=edge+'_0'
+		S=traci.lane.getMaxSpeed(lane)
+		MaxSpeedEdgeOut.append(S)
+		#on recupere le taux d'occupation
+		OccupancyEdgeOut.append(traci.edge.getLastStepOccupancy(edge))		
+	return OccupancyEdgeOut,MaxSpeedEdgeOut
+
+
+
+#Liste Conso moyenne et mini des liens sortants de l'intersection
+
+def consoEdgeOut(index,ListEdgeOut,step):
+	ConsoEdgeOut=[]
+	MinConsoEdgeOut=[]
+	for edge in ListEdgeOut[index]:
+		#on recupere la vitesse maximale en km/h et la longueur en km
+		lane=edge+'_0'
+		S=(float(traci.lane.getMaxSpeed(lane))*36.0)/10.0
+		L=float(traci.lane.getLength(lane))/1000.0
+		#conso en Litre sur L km, optimal selon la vitesse :
+		C=2*L/S + (13*S*S)/(33750)
+		MinConsoEdgeOut.append(C)
+		#on recupere le taux d'occupation
+		ConsoEdgeOut.append(traci.edge.getFuelConsumption(edge))		
+	return ConsoEdgeOut,MinConsoEdgeOut
+
+#Liste des liens sortants les plus consommateurs
+
+def badConsoEdge(ConsoEdgeOut,MinConsoEdgeOut,index,ListEdgeOut,JuncId):
+	l=0
+	badConsoEdge=[]
+	#Liens sortants depassant le seuil de Consommation
+	while l<len(ListEdgeOut[index]):
+		threshold = MinConsoEdgeOut[l]*2
+		if (ConsoEdgeOut[l] >= threshold):
+			badConsoEdge.append(ListEdgeOut[index][l])
+		l=l+1
+	return badConsoEdge
+
+
+
+#Liste des liens sortant les plus longs en temps de passage
+
+def slowEdge(OccupancyEdgeOut,MaxSpeedEdgeOut,index,ListEdgeOut,JuncId):
+	l=0
+	IntersectionCongestion=[]
+	SlowEdge=[]
+	#Liens sortants depassant le seuil de congestion
+	while l<len(ListEdgeOut[index]):
+		if MaxSpeedEdgeOut[l] <= 13.89:
+			threshold = 0.20
+		if MaxSpeedEdgeOut[l] > 13.89:
+			threshold = 0.16
+		if (OccupancyEdgeOut[l] >= threshold):
+			SlowEdge.append(ListEdgeOut[index][l])			
+		l=l+1
+	return SlowEdge,IntersectionCongestion
+
+
+#Liste des liens sortants depassant seuil compromis temps conso
+
+def slowAndbadConsoEdge(r,OccupancyEdgeOut,ConsoEdgeOut,MinConsoEdgeOut,index,ListEdgeOut,JuncId,MaxSpeedEdgeOut):
+	SlowAndbadConsoEdge=[]
+	l=0
+	while l<len(ListEdgeOut[index]):
+		if MaxSpeedEdgeOut[l] <= 13.89:
+			threshold = r*0.20+(1-r)*MinConsoEdgeOut[l]*2.0
+		if MaxSpeedEdgeOut[l] > 13.89:
+			threshold = r*0.16+(1-r)*MinConsoEdgeOut[l]*2.0
+		measure=r*OccupancyEdgeOut[l]+(1-r)*ConsoEdgeOut[l]
+		#print ListEdgeOut[index][l]
+		#print OccupancyEdgeOut[l]
+		#print ConsoEdgeOut[l]
+		if (measure>= threshold):
+			SlowAndbadConsoEdge.append(ListEdgeOut[index][l])
+		l=l+1
+	return SlowAndbadConsoEdge
+
+
+
+#initialisation des poids des liens modifies d'une liste
+		
+
+def routeWeight(Para,Liste):
+	for edge in Liste:
+		if Para=='Conso':
+			lane=edge+'_0'
+			S=(float(traci.lane.getMaxSpeed(lane))*36.0)/10.0
+			L=float(traci.lane.getLength(lane))/1000.0
+			#conso en Litre sur L km, optimal selon la vitesse :
+			C=2*L/S + (13*S*S)/(33750)
+			traci.edge.setEffort(edge,C)
+		if Para=='Time':
+			lane=edge+'_0'
+			Length=traci.lane.getLength(lane)
+			Speed=traci.lane.getMaxSpeed(lane)
+			#poids initial : longueur/Vitesse max
+			T=Length/Speed
+			traci.edge.adaptTraveltime(edge,T)
+		if Para!='Conso' and Para!='Time':
+			lane=edge+'_0'
+			T=traci.lane.getLength(lane)/traci.lane.getMaxSpeed(lane)
+			S=(float(traci.lane.getMaxSpeed(lane))*36.0)/10.0
+			L=float(traci.lane.getLength(lane))/1000.0
+			#conso en Litre sur L km, optimal selon la vitesse :
+			C=2*L/S + (13*S*S)/(33750)
+			measure=Para*T+(1-Para)*C
+			traci.edge.setEffort(edge,measure)
+
+
+		
+def travelWeight(Liste,Travel,step,Para):
+	if Para=='Time':
+		for edge in Liste:
+			if traci.edge.getAdaptedTraveltime(edge,step)!=-1:
+				Travel=Travel+traci.edge.getAdaptedTraveltime(edge,step)
+
+			else:
+				lane=edge+"_0"
+				Travel=Travel+(traci.lane.getLength(lane)/traci.lane.getMaxSpeed(lane))
+
+	else:
+		for edge in Liste:
+			Travel=Travel+traci.edge.getEffort(edge,step)
+
+		
+	return Travel
+
+
+
+
+def globalsatisfaction(Liste,LenRoute):
+	i=0
+	for satisf in Liste:
+		Liste[i]=pow(satisf,1.0/float(LenRoute[i]))
+		i=i+1
+	return Liste
+
+
+
+		
+
+
+

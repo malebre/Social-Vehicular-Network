@@ -1,0 +1,33 @@
+<?xml version="1.0" ?><configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumoConfiguration.xsd">
+    <input>
+        <net-file value="map.net.xml"/>
+        <route-files value="map.rou.xml"/>
+    </input>
+
+    <output>
+	<tripinfo-output value="maptripinfoWO.out.xml"/>
+    </output>
+
+   <time>
+         <begin value="25200"/>
+	 <end value="26100"/>
+    </time>
+
+  <traci_server>
+    <processing>
+        <route-steps value="200"/>
+        <time-to-teleport value="300"/>  
+        <scale value="0.2"/>   
+        <lanechange.allow-swap value="True"/>
+    </processing>
+    <remote-port value="8814"/>
+         
+  </traci_server>
+
+    <report>
+        <verbose value="true"/>
+        <no-warnings value="false"/>
+        <no-step-log value="true"/>
+    </report>
+
+</configuration>
