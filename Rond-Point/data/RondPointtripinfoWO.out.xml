@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on mar. 17 déc. 2013 17:32:29 CET by SUMO gui Version 0.19.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/sumo-gui.exeConfiguration.xsd">
+
+    <input>
+        <net-file value="data/RondPoint.net.xml"/>
+        <route-files value="data/RondPoint.rou.xml,data/RondPointBus.rou.xml"/>
+        <additional-files value="data/RondPoint.det.xml"/>
+    </input>
+
+    <output>
+        <tripinfo-output value="data/RondPointtripinfo.out.xml"/>
+        <save-state.prefix value="data/state"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+    </time>
+
+    <processing>
+        <time-to-teleport value="200"/>
+        <lanechange.allow-swap value="true"/>
+    </processing>
+
+    <report>
+        <no-step-log value="true"/>
+    </report>
+
+    <traci_server>
+        <remote-port value="8813"/>
+    </traci_server>
+
+</configuration>
+-->
+
+<tripinfos>
+</tripinfos>

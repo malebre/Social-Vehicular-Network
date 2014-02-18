@@ -1,0 +1,13 @@
+<flows>
+    <vType id="Bus" accel="0.8" decel="4.5" sigma="0.5" length="12" minGap="3" maxSpeed="25" guiShape="bus"/>
+    <flow id="BusFlowEastWest" from="-1277" to="240120122" begin="0" end="900" type="Bus" vehsPerHour="16"/>
+    <flow id="BusFlowNorthSouth" from="28925528" to="239331353" begin="0" end="900" type="Bus" vehsPerHour="4"/>
+    <flow id="BusFlowSouthNorth" from="239331354" to="105490284" begin="0" end="900" type="Bus" vehsPerHour="4"/>
+
+   
+
+
+
+
+</flows>
+

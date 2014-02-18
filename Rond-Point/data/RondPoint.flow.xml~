@@ -1,0 +1,167 @@
+<flows>
+    <vType id="Vehicle" length="4" maxSpeed="70">
+        <carFollowing-Krauss accel="0.8" decel="4.5" sigma="0.5"/>
+    </vType>
+    <flow id="VehicleFlowNorthToWest" from="28925528" departLane="free" to="105490271" begin="0" end="900" vehsPerHour="188" type="Vehicle"/>
+    <flow id="VehicleFlowNorthToNorth" from="28925528" departLane="free" to="28925528" begin="0" end="900" vehsPerHour="4" type="Vehicle"/>
+    <flow id="VehicleFlowNorthToEast" from="28925528" departLane="free" to="105490279" begin="0" end="900" vehsPerHour="8"  type="Vehicle"/>
+    <flow id="VehicleFlowNorthToSouth" from="28925528" departLane="free" to="239331353" begin="0" end="900" vehsPerHour="44" type="Vehicle"/>
+
+    <flow id="VehicleFlowSouthToWest" from="239331354" departLane="free" to="105490271" begin="0" end="900" vehsPerHour="12" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToNorth" from="239331354" departLane="free" to="105490284" begin="0" end="900" vehsPerHour="12" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToEast" from="239331354" departLane="free" to="105490279" begin="0" end="900" vehsPerHour="8" type="Vehicle"/>
+   
+
+    <flow id="VehicleFlowEastToWest" from="-1365" departLane="free" to="105490271" begin="0" end="900" vehsPerHour="1004" type="Vehicle"/>
+    <flow id="VehicleFlowEastToNorth" from="-1365" departLane="free" to="105490284" begin="0" end="900" vehsPerHour="24" type="Vehicle"/>
+    <flow id="VehicleFlowEastToSouth" from="-1365" departLane="free" to="239331353" begin="0" end="900" vehsPerHour="80" type="Vehicle"/>
+
+
+    <flow id="VehicleFlowWestToNorth" from="229259796"  departLane="free" to="105490284" begin="0" end="900" vehsPerHour="40" type="Vehicle"/>
+    <flow id="VehicleFlowWestToEast" from="229259796" departLane="free" to="105490279" begin="0" end="900" vehsPerHour="240" type="Vehicle"/>
+    <flow id="VehicleFlowWestToSouth" from="229259796" departLane="free" to="239331353" begin="0" end="900" vehsPerHour="80" type="Vehicle"/>
+    <flow id="VehicleFlowWestToWest" from="229259796"  departLane="free" to="229259796" begin="0" end="900" vehsPerHour="8" type="Vehicle"/>
+
+
+
+
+
+
+
+    <flow id="VehicleFlowNorthToWest1" from="28925528" departLane="free" to="105490271" begin="900" end="1800" vehsPerHour="320" type="Vehicle"/>
+    <flow id="VehicleFlowNorthToNorth1" from="28925528" departLane="free" to="28925528" begin="900" end="1800" vehsPerHour="4" type="Vehicle"/>
+    <flow id="VehicleFlowNorthToEast1" from="28925528" departLane="free" to="105490279" begin="900" end="1800" vehsPerHour="32"  type="Vehicle"/>
+    <flow id="VehicleFlowNorthToSouth1" from="28925528" departLane="free" to="239331353" begin="900" end="1800" vehsPerHour="96" type="Vehicle"/>
+
+    <flow id="VehicleFlowSouthToWest1" from="239331354" departLane="free" to="105490271" begin="900" end="1800" vehsPerHour="28" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToNorth1" from="239331354" departLane="free" to="105490284" begin="900" end="1800" vehsPerHour="32" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToEast1" from="239331354" departLane="free" to="105490279" begin="900" end="1800" vehsPerHour="4" type="Vehicle"/>
+   
+
+    <flow id="VehicleFlowEastToWest1" from="-1365" departLane="free" to="105490271" begin="900" end="1800" vehsPerHour="1148" type="Vehicle"/>
+    <flow id="VehicleFlowEastToNorth1" from="-1365" departLane="free" to="105490284" begin="900" end="1800" vehsPerHour="48" type="Vehicle"/>
+
+    <flow id="VehicleFlowEastToSouth1" from="-1365" departLane="free" to="239331353" begin="900" end="1800" vehsPerHour="132" type="Vehicle"/>
+
+   
+    <flow id="VehicleFlowWestToNorth1" from="229259796"  departLane="free" to="105490284" begin="900" end="1800" vehsPerHour="72" type="Vehicle"/>
+    <flow id="VehicleFlowWestToEast1" from="229259796" departLane="free" to="105490279" begin="900" end="1800" vehsPerHour="260" type="Vehicle"/>
+    <flow id="VehicleFlowWestToSouth1" from="229259796" departLane="free" to="239331353" begin="900" end="1800" vehsPerHour="52" type="Vehicle"/>
+
+
+
+
+
+
+
+
+
+    <flow id="VehicleFlowNorthToWest2" from="28925528" departLane="free" to="105490271" begin="1800" end="2700" vehsPerHour="69" type="Vehicle"/>
+   
+    <flow id="VehicleFlowNorthToEast2" from="28925528" departLane="free" to="105490279" begin="1800" end="2700" vehsPerHour="8"  type="Vehicle"/>
+    <flow id="VehicleFlowNorthToSouth2" from="28925528" departLane="free" to="239331353" begin="1800" end="2700" vehsPerHour="14" type="Vehicle"/>
+
+    <flow id="VehicleFlowSouthToWest2" from="239331354" departLane="free" to="105490271" begin="900" end="2700" vehsPerHour="3" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToNorth2" from="239331354" departLane="free" to="105490284" begin="900" end="2700" vehsPerHour="13" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToEast2" from="239331354" departLane="free" to="105490279" begin="900" end="2700" vehsPerHour="9" type="Vehicle"/>
+
+    <flow id="VehicleFlowEastToWest2" from="-1365" departLane="free" to="105490271" begin="900" end="2700" vehsPerHour="277" type="Vehicle"/>
+    <flow id="VehicleFlowEastToNorth2" from="-1365" departLane="free" to="105490284" begin="900" end="2700" vehsPerHour="18" type="Vehicle"/>
+    <flow id="VehicleFlowEastToSouth2" from="-1365" departLane="free" to="239331353" begin="900" end="2700" vehsPerHour="32" type="Vehicle"/>
+
+    <flow id="VehicleFlowWestToNorth2" from="229259796"  departLane="free" to="105490284" begin="900" end="2700" vehsPerHour="20" type="Vehicle"/>
+    <flow id="VehicleFlowWestToEast2" from="229259796" departLane="free" to="105490279" begin="900" end="2700" vehsPerHour="61" type="Vehicle"/>
+    <flow id="VehicleFlowWestToSouth2" from="229259796" departLane="free" to="239331353" begin="900" end="2700" vehsPerHour="15" type="Vehicle"/>
+
+
+
+
+
+
+    <flow id="VehicleFlowNorthToWest3" from="28925528" departLane="free" to="105490271" begin="2700" end="3600" vehsPerHour="98" type="Vehicle"/>
+    <flow id="VehicleFlowNorthToEast3" from="28925528" departLane="free" to="105490279" begin="2700" end="3600" vehsPerHour="11"  type="Vehicle"/>
+    <flow id="VehicleFlowNorthToSouth3" from="28925528" departLane="free" to="239331353" begin="2700" end="3600" vehsPerHour="20" type="Vehicle"/>
+
+    <flow id="VehicleFlowSouthToWest3" from="239331354" departLane="free" to="105490271" begin="2700" end="3600" vehsPerHour="7" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToNorth3" from="239331354" departLane="free" to="105490284" begin="2700" end="3600" vehsPerHour="12" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToEast3" from="239331354" departLane="free" to="105490279" begin="2700" end="3600" vehsPerHour="4" type="Vehicle"/>
+
+    <flow id="VehicleFlowEastToWest3" from="-1365" departLane="free" to="105490271" begin="2700" end="3600" vehsPerHour="257" type="Vehicle"/>
+    <flow id="VehicleFlowEastToNorth3" from="-1365" departLane="free" to="105490284" begin="2700" end="3600" vehsPerHour="27" type="Vehicle"/>
+    <flow id="VehicleFlowEastToSouth3" from="-1365" departLane="free" to="239331353" begin="2700" end="3600" vehsPerHour="34" type="Vehicle"/>
+
+    <flow id="VehicleFlowWestToWest3" from="229259796"  departLane="free" to="229259796" begin="2700" end="3600" vehsPerHour="1" type="Vehicle"/>
+    <flow id="VehicleFlowWestToNorth3" from="229259796"  departLane="free" to="105490284" begin="2700" end="3600" vehsPerHour="21" type="Vehicle"/>
+    <flow id="VehicleFlowWestToEast3" from="229259796" departLane="free" to="105490279" begin="2700" end="3600" vehsPerHour="71" type="Vehicle"/>
+    <flow id="VehicleFlowWestToSouth3" from="229259796" departLane="free" to="239331353" begin="2700" end="3600" vehsPerHour="35" type="Vehicle"/>
+
+
+
+
+
+
+
+
+    <flow id="VehicleFlowNorthToWest4" from="28925528" departLane="free" to="105490271" begin="3600" end="4500" vehsPerHour="92" type="Vehicle"/>
+    <flow id="VehicleFlowNorthToEast4" from="28925528" departLane="free" to="105490279" begin="3600" end="4500" vehsPerHour="9"  type="Vehicle"/>
+    <flow id="VehicleFlowNorthToSouth4" from="28925528" departLane="free" to="239331353" begin="3600" end="4500" vehsPerHour="27" type="Vehicle"/>
+
+    <flow id="VehicleFlowSouthToWest4" from="239331354" departLane="free" to="105490271" begin="3600" end="4500" vehsPerHour="8" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToNorth4" from="239331354" departLane="free" to="105490284" begin="3600" end="4500" vehsPerHour="17" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToEast4" from="239331354" departLane="free" to="105490279" begin="3600" end="4500" vehsPerHour="16" type="Vehicle"/>
+
+    <flow id="VehicleFlowEastToWest4" from="-1365" departLane="free" to="105490271" begin="3600" end="4500" vehsPerHour="242" type="Vehicle"/>
+    <flow id="VehicleFlowEastToNorth4" from="-1365" departLane="free" to="105490284" begin="3600" end="4500" vehsPerHour="24" type="Vehicle"/>
+    <flow id="VehicleFlowEastToSouth4" from="-1365" departLane="free" to="239331353" begin="3600" end="4500" vehsPerHour="48" type="Vehicle"/>
+
+    <flow id="VehicleFlowWestToNorth4" from="229259796"  departLane="free" to="105490284" begin="3600" end="4500" vehsPerHour="36" type="Vehicle"/>
+    <flow id="VehicleFlowWestToEast4" from="229259796" departLane="free" to="105490279" begin="3600" end="4500" vehsPerHour="63" type="Vehicle"/>
+    <flow id="VehicleFlowWestToSouth4" from="229259796" departLane="free" to="239331353" begin="3600" end="4500" vehsPerHour="14" type="Vehicle"/>
+
+
+
+    <flow id="VehicleFlowNorthToWest5" from="28925528" departLane="free" to="105490271" begin="4500" end="5400" vehsPerHour="73" type="Vehicle"/>
+    <flow id="VehicleFlowNorthToEast5" from="28925528" departLane="free" to="105490279" begin="4500" end="5400" vehsPerHour="8"  type="Vehicle"/>
+    <flow id="VehicleFlowNorthToSouth5" from="28925528" departLane="free" to="239331353" begin="4500" end="5400" vehsPerHour="34" type="Vehicle"/>
+
+    <flow id="VehicleFlowSouthToWest5" from="239331354" departLane="free" to="105490271" begin="4500" end="5400" vehsPerHour="11" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToNorth5" from="239331354" departLane="free" to="105490284" begin="4500" end="5400" vehsPerHour="25" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToEast5" from="239331354" departLane="free" to="105490279" begin="4500" end="5400" vehsPerHour="13" type="Vehicle"/>
+
+    <flow id="VehicleFlowEastToWest5" from="-1365" departLane="free" to="105490271" begin="4500" end="5400" vehsPerHour="258" type="Vehicle"/>
+    <flow id="VehicleFlowEastToNorth5" from="-1365" departLane="free" to="105490284" begin="4500" end="5400" vehsPerHour="33" type="Vehicle"/>
+    <flow id="VehicleFlowEastToSouth5" from="-1365" departLane="free" to="239331353" begin="4500" end="5400" vehsPerHour="44" type="Vehicle"/>
+
+    <flow id="VehicleFlowWestToNorth5" from="229259796"  departLane="free" to="105490284" begin="4500" end="5400" vehsPerHour="34" type="Vehicle"/>
+    <flow id="VehicleFlowWestToEast5" from="229259796" departLane="free" to="105490279" begin="4500" end="5400" vehsPerHour="69" type="Vehicle"/>
+    <flow id="VehicleFlowWestToSouth5" from="229259796" departLane="free" to="239331353" begin="4500" end="5400" vehsPerHour="29" type="Vehicle"/>
+
+
+
+
+
+    <flow id="VehicleFlowNorthToWest6" from="28925528" departLane="free" to="105490271" begin="5400" end="6300" vehsPerHour="42" type="Vehicle"/>
+ 
+    <flow id="VehicleFlowNorthToEast6" from="28925528" departLane="free" to="105490279" begin="5400" end="6300" vehsPerHour="25"  type="Vehicle"/>
+    <flow id="VehicleFlowNorthToSouth6" from="28925528" departLane="free" to="239331353" begin="5400" end="6300" vehsPerHour="26" type="Vehicle"/>
+
+    <flow id="VehicleFlowSouthToWest6" from="239331354" departLane="free" to="105490271" begin="5400" end="6300" vehsPerHour="50" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToNorth6" from="239331354" departLane="free" to="105490284" begin="5400" end="6300" vehsPerHour="33" type="Vehicle"/>
+    <flow id="VehicleFlowSouthToEast6" from="239331354" departLane="free" to="105490279" begin="5400" end="6300" vehsPerHour="30" type="Vehicle"/>
+  
+
+    <flow id="VehicleFlowEastToWest6" from="-1365" departLane="free" to="105490271" begin="5400" end="6300" vehsPerHour="144" type="Vehicle"/>
+    <flow id="VehicleFlowEastToNorth6" from="-1365" departLane="free" to="105490284" begin="5400" end="6300" vehsPerHour="18" type="Vehicle"/>
+   
+    <flow id="VehicleFlowEastToSouth6" from="-1365" departLane="free" to="239331353" begin="5400" end="6300" vehsPerHour="9" type="Vehicle"/>
+
+   
+    <flow id="VehicleFlowWestToNorth6" from="229259796"  departLane="free" to="105490284" begin="5400" end="6300" vehsPerHour="45" type="Vehicle"/>
+    <flow id="VehicleFlowWestToEast6" from="229259796" departLane="free" to="105490279" begin="5400" end="6300" vehsPerHour="210" type="Vehicle"/>
+    <flow id="VehicleFlowWestToSouth6" from="229259796" departLane="free" to="239331353" begin="5400" end="6300" vehsPerHour="15" type="Vehicle"/>
+
+
+    
+
+</flows>
+

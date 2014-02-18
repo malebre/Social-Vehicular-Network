@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Wed Feb  5 15:04:28 2014 by SUMO duarouter Version 0.19.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="data/RondPoint.net.xml"/>
+        <flow-files value="data/RondPointBus.flow.xml"/>
+    </input>
+
+    <output>
+        <output-file value="data/RondPointBu.rou.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/routes_file.xsd">
+    <vType id="Bus" length="17.00" minGap="3.00" maxSpeed="25.00" guiShape="bus">
+        <carFollowing-Krauss accel="0.80" decel="4.50" sigma="0.50"/>
+    </vType>
+    <vehicle id="BusFlowEastWest.0" type="Bus" depart="0.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth.0" type="Bus" depart="0.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth.0" type="Bus" depart="0.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest.1" type="Bus" depart="225.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest.2" type="Bus" depart="450.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest.3" type="Bus" depart="675.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastSouth1.0" type="Bus" depart="900.00">
+        <route edges="-1277 -587 240142917 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest1.0" type="Bus" depart="900.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth1.0" type="Bus" depart="900.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth1.0" type="Bus" depart="900.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast1.0" type="Bus" depart="900.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest1.1" type="Bus" depart="1012.50">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast1.1" type="Bus" depart="1050.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest1.2" type="Bus" depart="1125.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast1.2" type="Bus" depart="1200.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest1.3" type="Bus" depart="1237.50">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest1.4" type="Bus" depart="1350.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth1.1" type="Bus" depart="1350.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast1.3" type="Bus" depart="1350.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest1.5" type="Bus" depart="1462.50">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast1.4" type="Bus" depart="1500.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest1.6" type="Bus" depart="1575.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast1.5" type="Bus" depart="1650.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest1.7" type="Bus" depart="1687.50">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest2.0" type="Bus" depart="1800.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth2.0" type="Bus" depart="1800.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth2.0" type="Bus" depart="1800.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast2.0" type="Bus" depart="1800.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest2.1" type="Bus" depart="1928.57">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast2.1" type="Bus" depart="2025.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest2.2" type="Bus" depart="2057.14">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest2.3" type="Bus" depart="2185.71">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth2.1" type="Bus" depart="2250.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast2.2" type="Bus" depart="2250.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest2.4" type="Bus" depart="2314.28">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest2.5" type="Bus" depart="2442.86">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast2.3" type="Bus" depart="2475.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest2.6" type="Bus" depart="2571.43">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest3.0" type="Bus" depart="2700.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthEast3.0" type="Bus" depart="2700.00">
+        <route edges="28925528 -439 -440 240118541 -1477 240143209 105490279"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth3.0" type="Bus" depart="2700.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth3.0" type="Bus" depart="2700.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast3.0" type="Bus" depart="2700.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast3.1" type="Bus" depart="2850.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest3.1" type="Bus" depart="2880.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast3.2" type="Bus" depart="3000.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest3.2" type="Bus" depart="3060.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth3.1" type="Bus" depart="3150.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast3.3" type="Bus" depart="3150.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest3.3" type="Bus" depart="3240.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast3.4" type="Bus" depart="3300.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest3.4" type="Bus" depart="3420.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast3.5" type="Bus" depart="3450.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest4.0" type="Bus" depart="3600.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth4.0" type="Bus" depart="3600.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth4.0" type="Bus" depart="3600.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast4.0" type="Bus" depart="3600.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest4.1" type="Bus" depart="3780.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast4.1" type="Bus" depart="3825.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest4.2" type="Bus" depart="3960.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth4.1" type="Bus" depart="4050.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth4.1" type="Bus" depart="4050.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast4.2" type="Bus" depart="4050.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest4.3" type="Bus" depart="4140.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast4.3" type="Bus" depart="4275.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest4.4" type="Bus" depart="4320.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest5.0" type="Bus" depart="4500.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth5.0" type="Bus" depart="4500.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth5.0" type="Bus" depart="4500.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthWest5.0" type="Bus" depart="4500.00">
+        <route edges="239331354 240143209 240143210 -587 240142917 -439 105490271"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast5.0" type="Bus" depart="4500.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest5.1" type="Bus" depart="4680.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast5.1" type="Bus" depart="4725.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest5.2" type="Bus" depart="4860.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth5.1" type="Bus" depart="4950.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast5.2" type="Bus" depart="4950.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest5.3" type="Bus" depart="5040.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast5.3" type="Bus" depart="5175.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest5.4" type="Bus" depart="5220.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest6.0" type="Bus" depart="5400.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth6.0" type="Bus" depart="5400.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth6.0" type="Bus" depart="5400.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast6.0" type="Bus" depart="5400.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest6.1" type="Bus" depart="5580.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast6.1" type="Bus" depart="5580.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest6.2" type="Bus" depart="5760.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast6.2" type="Bus" depart="5760.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth6.1" type="Bus" depart="5850.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth6.1" type="Bus" depart="5850.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest6.3" type="Bus" depart="5940.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast6.3" type="Bus" depart="5940.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest6.4" type="Bus" depart="6120.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast6.4" type="Bus" depart="6120.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest7.0" type="Bus" depart="6300.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth7.0" type="Bus" depart="6300.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthEast7.0" type="Bus" depart="6300.00">
+        <route edges="239331354 240143209 105490279"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth7.0" type="Bus" depart="6300.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast7.0" type="Bus" depart="6300.00">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest7.1" type="Bus" depart="6412.50">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast7.1" type="Bus" depart="6428.57">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest7.2" type="Bus" depart="6525.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast7.2" type="Bus" depart="6557.14">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest7.3" type="Bus" depart="6637.50">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast7.3" type="Bus" depart="6685.71">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest7.4" type="Bus" depart="6750.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast7.4" type="Bus" depart="6814.28">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest7.5" type="Bus" depart="6862.50">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast7.5" type="Bus" depart="6942.85">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest7.6" type="Bus" depart="6975.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowWestEast7.6" type="Bus" depart="7071.43">
+        <route edges="-240120122 -240120119 --1277"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest7.7" type="Bus" depart="7087.50">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+</routes>

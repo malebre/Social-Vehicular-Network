@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Tue Feb 11 18:27:57 2014 by SUMO duarouter Version 0.19.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="data/RondPoint.net.xml"/>
+        <flow-files value="data/RondPointBus.flow.xml"/>
+    </input>
+
+    <output>
+        <output-file value="data/RondPointBus.rou.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/routes_file.xsd">
+    <vType id="Bus" length="12.00" minGap="3.00" maxSpeed="25.00" guiShape="bus">
+        <carFollowing-Krauss accel="0.80" decel="4.50" sigma="0.50"/>
+    </vType>
+    <vehicle id="BusFlowEastWest.0" type="Bus" depart="0.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowNorthSouth.0" type="Bus" depart="0.00">
+        <route edges="28925528 -439 -440 240118541 239331353"/>
+    </vehicle>
+    <vehicle id="BusFlowSouthNorth.0" type="Bus" depart="0.00">
+        <route edges="239331354 240143209 240143210 -587 105490284"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest.1" type="Bus" depart="225.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest.2" type="Bus" depart="450.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+    <vehicle id="BusFlowEastWest.3" type="Bus" depart="675.00">
+        <route edges="-1277 240120119 240120122"/>
+    </vehicle>
+</routes>
