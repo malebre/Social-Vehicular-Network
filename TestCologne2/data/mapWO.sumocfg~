@@ -17,7 +17,7 @@
     <processing>
         <route-steps value="200"/>
         <time-to-teleport value="300"/>  
-        <scale value="0.2"/>   
+        <scale value="0.8"/>   
         <lanechange.allow-swap value="True"/>
     </processing>
     <remote-port value="8814"/>

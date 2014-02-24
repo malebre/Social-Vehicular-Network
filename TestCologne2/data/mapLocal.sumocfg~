@@ -4,14 +4,11 @@
         <route-files value="map.rou.xml"/>
     </input>
 
-    <emissions>
-	<device.hbefa.probability value="1"/> 
-        <device.hbefa.explicit type="fuel_abs"/> 
-    </emissions>
-
     <output>
 	<tripinfo-output value="maptripinfoLocal.out.xml"/>
     </output>
+
+ 
 
    <time>
          <begin value="25200"/>

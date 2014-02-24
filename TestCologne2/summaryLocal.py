@@ -32,3 +32,4 @@ MeanFuelConso=Totalfuel/len(fuel)
 
 
 
+

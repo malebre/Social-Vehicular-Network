@@ -8,6 +8,11 @@
 	<tripinfo-output value="maptripinfoWO.out.xml"/>
     </output>
 
+    <emissions>
+	<device.hbefa.probability value="1"/> 
+        <device.hbefa.explicit type="fuel_abs"/> 
+    </emissions>
+
    <time>
          <begin value="25200"/>
 	 <end value="26100"/>
@@ -17,7 +22,7 @@
     <processing>
         <route-steps value="200"/>
         <time-to-teleport value="300"/>  
-        <scale value="0.1"/>   
+        <scale value="0.8"/>   
         <lanechange.allow-swap value="True"/>
     </processing>
     <remote-port value="8814"/>
