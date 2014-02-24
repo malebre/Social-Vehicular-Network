@@ -54,21 +54,23 @@ for density in Density:
 	GConso=[]
 	QConso=[]
 	SConso=[]
+	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]]
 	b=0
-	while b<10:
+	while b<len(listeCoeff):
 
 
 		changeValueDensity("data/mapLocal.sumocfg",density)
-		green=random.randint(0,100)
-		quick=random.randint(0,100)
-		while green+quick>100:
-			quick=random.randint(0,100)
-	
-		smooth=100-green-quick
 		
-		#green=70
-		#quick=13
-		#smooth=17
+		#green=random.randint(0,100)
+		#quick=random.randint(0,100)
+		#while green+quick>100:
+			#quick=random.randint(0,100)
+	
+		#smooth=100-green-quick
+		
+		green=listeCoeff[b][0]
+		quick=listeCoeff[b][1]
+		smooth=listeCoeff[b][2]
 		sys.argv=["runnerLocal2.py",green,quick,smooth]
 		execfile("runnerLocal2.py")
 		time.sleep(2)	
@@ -100,8 +102,7 @@ for density in Density:
 		r=r+1
 
 
-	ind = np.arange(N) 
-	ind2=ind+0.2   
+	ind = np.arange(N)   
 	width = 0.2      # the width of the bars
 
 
@@ -134,9 +135,9 @@ for density in Density:
 	plt.figure()
 
 
-	p4 = plt.bar(ind2, GConso, width, color='g')
-	p5 = plt.bar(ind2, QConso, width, color='r',bottom=GConso)
-	p6 = plt.bar(ind2, SConso, width, color='b', bottom=Sum2)
+	p4 = plt.bar(ind, GConso, width, color='g')
+	p5 = plt.bar(ind, QConso, width, color='r',bottom=GConso)
+	p6 = plt.bar(ind, SConso, width, color='b', bottom=Sum2)
 
 	plt.plot(*zip(*WOConso), color='m', label='without')
 	plt.plot(*zip(*TotConso), color='y', label='Total')
