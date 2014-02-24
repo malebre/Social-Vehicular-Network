@@ -12,7 +12,10 @@
 	<device.rerouting.probability value="1"/>
   </routing>
 
-
+    <emissions>
+	<device.hbefa.probability value="1"/> 
+        <device.hbefa.explicit type="fuel_abs"/> 
+    </emissions>
    <time>
           <begin value="25200"/>
 	 <end value="26100"/>
