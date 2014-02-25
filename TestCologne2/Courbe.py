@@ -66,23 +66,23 @@ for density in Density:
 
 	WaitLocal=[]
 
-	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]]
+	#listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]] len(listeCoeff)
 	b=0
-	while b<len(listeCoeff):
+	while b< 10:
 
 
 		changeValueDensity("data/mapLocal.sumocfg",density)
 		
-		#green=random.randint(0,100)
-		#quick=random.randint(0,100)
-		#while green+quick>100:
-			#quick=random.randint(0,100)
+		green=random.randint(0,100)
+		quick=random.randint(0,100)
+		while green+quick>100:
+			quick=random.randint(0,100)
 	
-		#smooth=100-green-quick
+		smooth=100-green-quick
 		
-		green=listeCoeff[b][0]
-		quick=listeCoeff[b][1]
-		smooth=listeCoeff[b][2]
+		#green=listeCoeff[b][0]
+		#quick=listeCoeff[b][1]
+		#smooth=listeCoeff[b][2]
 		sys.argv=["runnerLocal2.py",green,quick,smooth]
 		execfile("runnerLocal2.py")
 		time.sleep(2)	

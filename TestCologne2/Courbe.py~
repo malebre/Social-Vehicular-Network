@@ -66,8 +66,7 @@ for density in Density:
 
 	WaitLocal=[]
 
-	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17]]
-#,[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]]
+	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]]
 	b=0
 	while b<len(listeCoeff):
 
@@ -152,7 +151,6 @@ for density in Density:
 
 	plt.ylabel('TravelTime')
 	plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
-	plt.legend( (p1[0],p2[0],p3[0]), ('GreenWay', 'QuickWay','SmoothWay') )
 
 	plt.figure()
 
