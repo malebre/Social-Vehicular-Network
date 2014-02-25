@@ -33,6 +33,8 @@ print "Le temps moyen d'attente par vehicule est : " + str(MeanwaitSteps) +" s"
 print "Le nombre de vehicule est de : " + str(len(duration))
 print "maximum de temps d'attente :" + str(max(waitSteps)) + "s"
 print "maximum temps de parcours :" + str(max(duration)/60) + "min"
+print "le parcours moyen en km est de :" + str(MeanRouteLength/1000)
+print "le temps de parcours moyen est de :"+str(MeanDuration)
 
 
 

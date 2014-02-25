@@ -23,5 +23,6 @@ MeanDuration=(TotalDuration/len(duration))/60
 MeanwaitSteps=TotalwaitSteps/len(waitSteps)
 MeanFuelConso=Totalfuel/len(fuel)
 
-
+print "le temps moyen de parcours est de " + str(MeanDuration)
+print "le temps d'attente moyen est de " + str(MeanwaitSteps)
 

@@ -28,7 +28,7 @@ for density in Density:
 	iteration=iteration+1
 	changeValueDensity("data/map.sumocfg",density)
 	execfile("runner.py")
-	time.sleep(2)
+
 	execfile("summary.py")
 	TravelTime=MeanDuration
 	Conso=MeanFuelConso
