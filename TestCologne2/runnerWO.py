@@ -60,11 +60,11 @@ for junction in CongestionList[1]:
 	index=CongestionList[1].index(junction)
 	CongestionList[index][0]=float(CongestionList[index][0])/float(number[index])
 CongestionList.sort()
-print CongestionList
+#print CongestionList
 for intersection in CongestionList :
 	if intersection[0]>0:
 		List.append(intersection[1])
-print List
+#print List
 	
 sys.stdout.flush()	
 

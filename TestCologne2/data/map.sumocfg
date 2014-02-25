@@ -8,29 +8,33 @@
 	<tripinfo-output value="maptripinfo.out.xml"/>
     </output>
 
- <routing>
-	<device.rerouting.probability value="1"/>
-  </routing>
-
     <emissions>
 	<device.hbefa.probability value="1"/> 
         <device.hbefa.explicit type="fuel_abs"/> 
     </emissions>
+
+
+
+
    <time>
           <begin value="27000"/>
 	 <end value="27900"/>
     </time>
 
+  <traci_server>
     <processing>
         <route-steps value="200"/>
         <time-to-teleport value="300"/>  
         <scale value="0.8"/>   
         <lanechange.allow-swap value="True"/>
     </processing>
+    <remote-port value="8814"/>
+         
+  </traci_server>
 
     <report>
         <verbose value="true"/>
-        <no-warnings value="true"/>
+        <no-warnings value="false"/>
         <no-step-log value="true"/>
     </report>
 

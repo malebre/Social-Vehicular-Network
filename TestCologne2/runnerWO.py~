@@ -9,7 +9,7 @@ from sumolib import checkBinary
 import libxml2,random
 import traci
 from libxml2 import xmlAttr
-from fonctionLocal import listEdgeInc, listEdgeOut
+from fonctionLocal2 import listEdgeInc, listEdgeOut
 
 PORT = 8814
 

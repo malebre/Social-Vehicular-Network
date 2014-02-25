@@ -25,7 +25,7 @@ MeanFuelConso=Totalfuel/len(fuel)
 #print "la conso moyenne est de" + str(MeanFuelConso) + "ml"
 #print "Le parcours moyen en temps est " + str(MeanDuration) +" min"
 #print "Le temps moyen d'attente par vehicule est : " + str(MeanwaitSteps) +" s"
-#print "Le nombre de vehicule est de : " + str(len(duration))
+print "Le nombre de vehicule est de : " + str(len(duration))
 #print "maximum de temps d'attente :" + str(max(waitSteps)) + "s"
 #print "maximum temps de parcours :" + str(max(duration)/60) + "min"
 

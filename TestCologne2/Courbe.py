@@ -14,13 +14,20 @@ import time
  
 Density=["0.8"]
 NumVeh=[]
+
 TravelWithDevice=[]
 TravelWithout=[]
-TravelLocal=[]
+
+
 ConsoWithDevice=[]
 ConsoWithout=[]
-ConsoLocal=[]
+
+
 ValueApp=[]
+
+WaitWithDevice=[]
+WaitWithout=[]
+
 
 
 iteration=0
@@ -36,6 +43,7 @@ for density in Density:
 	NumVeh.append(NumberVehicle)
 	TravelWithDevice.append(float(TravelTime))
 	ConsoWithDevice.append(float(MeanFuelConso))
+	WaitWithDevice.append(float(MeanwaitSteps))
 
 
 	changeValueDensity("data/mapWO.sumocfg",density)
@@ -46,6 +54,7 @@ for density in Density:
 	ConsoWO=MeanFuelConso
 	TravelWithout.append(float(TravelTimeWO))
 	ConsoWithout.append(float(ConsoWO))
+	WaitWithout.append(float(MeanwaitSteps))
 
 	GTravel=[]
 	QTravel=[]
@@ -54,6 +63,9 @@ for density in Density:
 	GConso=[]
 	QConso=[]
 	SConso=[]
+
+	WaitLocal=[]
+
 	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]]
 	b=0
 	while b<len(listeCoeff):
@@ -77,7 +89,9 @@ for density in Density:
 		execfile("summaryLocal.py")
 		TravelTimeLocal=MeanDuration
 		ConsoLocal=MeanFuelConso
-		#TravelLocal.append(TravelTimeLocal)
+
+		
+
 		T=float(TravelTimeLocal)/float(green+quick+smooth)
 		C=float(ConsoLocal)/float(green+quick+smooth)
 		GTravel.append(green*T)
@@ -89,6 +103,7 @@ for density in Density:
 		SConso.append(smooth*C)
 		print b
 		ValueApp.append([green,quick,smooth,density])
+		WaitLocal.append(float(MeanwaitSteps))
 
 	
 		b=b+1
@@ -110,12 +125,18 @@ for density in Density:
 	TotTotal=[]
 	WOConso=[]
 	TotConso=[]
+	WOWait=[]
+	TotWait=[]
+	LocalWait=[]
 	list(ind)[len(list(ind))-1] = list(ind)[len(list(ind))-1]+0.2
 	for indice in list(ind):
 		TotTotal.append([indice,TravelWithDevice[iteration-1]])
 		WOTotal.append([indice,TravelWithout[iteration-1]])
 		TotConso.append([indice,ConsoWithDevice[iteration-1]])
 		WOConso.append([indice,ConsoWithout[iteration-1]])
+		TotWait.append([indice,WaitWithDevice[iteration-1]])
+		WOWait.append([indice,WaitWithout[iteration-1]])
+		LocalWait.append([indice,WaitLocal[indice-1]])
 
 
 	
@@ -130,8 +151,18 @@ for density in Density:
 
 	plt.ylabel('TravelTime')
 	plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
-	plt.legend( (p1[0],p2[0],p3[0]), ('GreenWay', 'QuickWay','SmoothWay') )
 
+	plt.figure()
+
+
+	plt.plot(*zip(*WOWait), color='m', label='without')
+	plt.plot(*zip(*TotWait), color='y', label='Total')
+	plt.plot(*zip(*LocalWait), color='r', label='Local')
+	
+
+	plt.ylabel('Wait')
+	plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
+	
 	plt.figure()
 
 
@@ -145,8 +176,7 @@ for density in Density:
 
 	plt.ylabel('Conso')
 	plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
-	plt.legend( (p4[0],p5[0],p6[0]), ('GreenWay', 'QuickWay','SmoothWay') )
-	
+
 	plt.figure()
 
 

@@ -20,7 +20,7 @@ sys.path.append(os.path.join(os.environ.get("SUMO_HOME", os.path.join(os.path.di
 from sumolib import checkBinary
 import traci
 
-PORT = 8814
+PORT = 8813
 
 	
 
