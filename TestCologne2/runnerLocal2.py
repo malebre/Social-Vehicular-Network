@@ -7,7 +7,7 @@ import os,subprocess,sys,shutil,sumolib
 from sumolib import checkBinary
 import traci,libxml2,random
 from libxml2 import xmlAttr
-from fonctionLocal2 import rateOfJunctionChosen,listInter,save,listEdgeInc,listEdgeOut,juncVisitedVehID,slowEdge,currentTravelEdgeOut,occupancyEdgeOut, listVehApplications,routeWeight,intersect,consoEdgeOut,badConsoEdge,slowAndbadConsoEdge
+from fonctionLocal2 import rateOfJunctionChosen,listInter,save,listEdgeInc,listEdgeOut,juncVisitedVehID,slowEdge,currentTravelEdgeOut,occupancyEdgeOut, listVehApplications,routeWeight,intersect,consoEdgeOut,badConsoEdge,slowAndbadConsoEdge,communication
 
 
 PORT = 8814
@@ -64,8 +64,8 @@ ListInter=listInter(XJunc,YJunc)
 ListEdgeInc=listEdgeInc(EdgeInc)
 
 #Liste des liens sortants de chaque intersection
-
-ListEdgeOut=listEdgeOut(JuncId)
+#si elle ne comunique pas on les considere distinctement, sinon on ne fait qu'une grande liste
+ListEdgeOut=communication(str(sys.argv[4]),JuncId)
 
 #initialisation des liens visites
 
@@ -106,6 +106,10 @@ step=0
 
 ListvehID=[]
 
+#vehicule changeant de route pour mesurer la Satisfaction
+
+changeVeh=[]
+
 
 while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
     	traci.simulationStep()
@@ -141,20 +145,20 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 		CoordInterY=float(CoordInter[1])
 
 		#Liste des Vitesses Maximales de chaque lien sortant de l'intersection et leur taux d'occupation
-		MeasureTimeEdgeOut=occupancyEdgeOut(index,ListEdgeOut,step)
+		MeasureTimeEdgeOut=occupancyEdgeOut(ListEdgeOut[index],step)
 		MaxSpeedEdgeOut[index]=MeasureTimeEdgeOut[1]
 		OccupancyEdgeOut[index]=MeasureTimeEdgeOut[0]
 
 		#Liste des consos de chaque lien sortant de l'intersection et leur conso minimum
-		MeasureConsoEdgeOut=consoEdgeOut(index,ListEdgeOut,step)
+		MeasureConsoEdgeOut=consoEdgeOut(ListEdgeOut[index],step)
 		ConsoEdgeOut[index]=MeasureConsoEdgeOut[0]
 		MinConsoEdgeOut[index]=MeasureConsoEdgeOut[1]
 
 		#Liste des liens sortant depassant le seuil de cout en temps
-		Slow=slowEdge(OccupancyEdgeOut[index],MaxSpeedEdgeOut[index],index,ListEdgeOut,JuncId)
+		Slow=slowEdge(OccupancyEdgeOut[index],MaxSpeedEdgeOut[index],ListEdgeOut[index],JuncId)
 		SlowEdge[index]=Slow[0]
 		#Liste des liens sortant depassant le seuil de cout en conso
-		BadConsoEdge[index]=badConsoEdge(ConsoEdgeOut[index],MinConsoEdgeOut[index],index,ListEdgeOut,JuncId)
+		BadConsoEdge[index]=badConsoEdge(ConsoEdgeOut[index],MinConsoEdgeOut[index],ListEdgeOut[index],JuncId)
 		
 		
 #GREENWAY	
@@ -172,8 +176,17 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 				#enregistrement du passage du vehicule pour eviter les boucles infinies
 				JuncVisitedVehID[index].append(vehID)
 				
+				#on retient la position
+				position=traci.vehicle.getRoute(vehID).index(traci.vehicle.getRoadID(vehID))
+				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID))-1)]
+
 				#recalcule chemin
 				traci.vehicle.rerouteEffort(vehID)
+
+				#on test si il ya changement de route:
+				if  Route!=traci.route.getEdges(traci.vehicle.getRouteID(vehID)):
+					if not(vehID in changeVeh):
+						changeVeh.append(vehID)
 		
 		#initialisation des poids 
 		routeWeight('Conso',ListEdgeOut[index])
@@ -194,7 +207,7 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 				#compromis temps conso choisi par vehID
 				r=Compromis[ListSmoothWay.index(vehID)]			
 				#Liste des liens sortant depassant le seuil compromis temps conso				
-				SlowAndbadConsoEdge[index]=slowAndbadConsoEdge(r,OccupancyEdgeOut[index],ConsoEdgeOut[index],MinConsoEdgeOut[index],index,ListEdgeOut,JuncId,MaxSpeedEdgeOut[index])
+				SlowAndbadConsoEdge[index]=slowAndbadConsoEdge(r,OccupancyEdgeOut[index],ConsoEdgeOut[index],MinConsoEdgeOut[index],ListEdgeOut[index],JuncId,MaxSpeedEdgeOut[index])
 
 				#calcule des poids dans le reseau
 				routeWeight(r,traci.edge.getIDList())
@@ -203,8 +216,19 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 				for edge in SlowAndbadConsoEdge[index]:
 					traci.edge.setEffort(edge,920000000000)
 
+				#on retient la position
+				position=traci.vehicle.getRoute(vehID).index(traci.vehicle.getRoadID(vehID))
+				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID))-1)]
+
+
 				#recalcule chemin
 				traci.vehicle.rerouteEffort(vehID)
+
+				#on test si il ya changement de route:
+				if  Route!=traci.route.getEdges(traci.vehicle.getRouteID(vehID)):
+					if not(vehID in changeVeh):
+						changeVeh.append(vehID)
+
 		
 		#initialistion des poids pour l'appli greenway
 		routeWeight('Conso',traci.edge.getIDList())
@@ -224,9 +248,19 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 			if (coordVehx>=CoordInterX-40) and (coordVehx<=CoordInterX+40) and (coordVehy>=CoordInterY-40) and (coordVehy<=CoordInterY+40) and (traci.vehicle.getRoadID(vehID) in ListEdgeInc[index]) and not(vehID in JuncVisitedVehID[index]):
 
 				#enregistrement du passage du vehicule pour eviter les boucles infinies
-				JuncVisitedVehID[index].append(vehID)				
+				JuncVisitedVehID[index].append(vehID)
+
+				#on retient la position
+				position=traci.vehicle.getRoute(vehID).index(traci.vehicle.getRoadID(vehID))
+				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID))-1)]
+				
 				#recalcule du plus court chemin 
 				traci.vehicle.rerouteTraveltime(vehID)
+
+				#on test si il ya changement de route:
+				if  Route!=traci.route.getEdges(traci.vehicle.getRouteID(vehID)):
+					if not(vehID in changeVeh):
+						changeVeh.append(vehID)
 
 		
 		#initialistion des poids 
@@ -253,7 +287,7 @@ traci.close()
 #from operator import itemgetter
 #compte = compte.items()
 #compte.sort(key=itemgetter(1),reverse=True)
-
+#print changeVeh
 #print compte
 #InterCongSelect=[]
 #for valeur in compte:

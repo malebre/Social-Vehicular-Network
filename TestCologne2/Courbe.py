@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
+communication=sys.argv[1]
+
  
 Density=["0.8"]
 NumVeh=[]
@@ -35,7 +37,7 @@ for density in Density:
 	iteration=iteration+1
 	changeValueDensity("data/map.sumocfg",density)
 	execfile("runner.py")
-
+	time.sleep(2)
 	execfile("summary.py")
 	TravelTime=MeanDuration
 	Conso=MeanFuelConso
@@ -66,29 +68,37 @@ for density in Density:
 
 	WaitLocal=[]
 
-	#listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]] len(listeCoeff)
+	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]] 
+	#len(listeCoeff)
 	b=0
-	while b< 10:
+	while b< 1:
 
 
 		changeValueDensity("data/mapLocal.sumocfg",density)
 		
-		green=random.randint(0,100)
-		quick=random.randint(0,100)
-		while green+quick>100:
-			quick=random.randint(0,100)
+		#green=random.randint(0,100)
+		#quick=random.randint(0,100)
+		#while green+quick>100:
+			#quick=random.randint(0,100)
 	
-		smooth=100-green-quick
+		#smooth=100-green-quick
 		
-		#green=listeCoeff[b][0]
-		#quick=listeCoeff[b][1]
-		#smooth=listeCoeff[b][2]
-		sys.argv=["runnerLocal2.py",green,quick,smooth]
+		green=listeCoeff[b][0]
+		quick=listeCoeff[b][1]
+		smooth=listeCoeff[b][2]
+		sys.argv=["runnerLocal2.py",green,quick,smooth,communication]
 		execfile("runnerLocal2.py")
+		ListeVehReroute=changeVeh
 		time.sleep(2)	
 		execfile("summaryLocal.py")
+		time.sleep(2)
 		TravelTimeLocal=MeanDuration
 		ConsoLocal=MeanFuelConso
+		sys.argv=["satisfaction.py",ListeVehReroute]
+		execfile("satisfaction.py")
+		time.sleep(2)
+		Satis=SatisfactionDuration
+		
 
 		
 
@@ -104,6 +114,7 @@ for density in Density:
 		print b
 		ValueApp.append([green,quick,smooth,density])
 		WaitLocal.append(float(MeanwaitSteps))
+
 
 	
 		b=b+1
@@ -137,6 +148,7 @@ for density in Density:
 		TotWait.append([indice,WaitWithDevice[iteration-1]])
 		WOWait.append([indice,WaitWithout[iteration-1]])
 		LocalWait.append([indice,WaitLocal[indice-1]])
+		
 
 
 	
@@ -161,6 +173,13 @@ for density in Density:
 	
 
 	plt.ylabel('Wait')
+	plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
+	
+	plt.figure()
+
+	plt.plot(Satis, 'go')	
+	plt.ylim(0,5)
+	plt.ylabel('Satisfaction')
 	plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
 	
 	plt.figure()
