@@ -25,13 +25,13 @@
         <scale value="0.8"/>   
         <lanechange.allow-swap value="True"/>
     </processing>
-    <remote-port value="8814"/>
+    <remote-port value="8813"/>
          
   </traci_server>
 
     <report>
         <verbose value="true"/>
-        <no-warnings value="false"/>
+        <no-warnings value="true"/>
         <no-step-log value="true"/>
     </report>
 

@@ -179,6 +179,32 @@ def listEdgeOut(JuncId):
 		l=l+1
 	return ListEdgeOut
 
+
+#defini si il y a communication entre toutes les intersections communicantes ou aucun communication
+def communication(choice,JuncId):
+	if choice=='yes':
+		L=[]
+		ListEdge=listEdgeOut(JuncId)
+		for l in ListEdge:
+			#fusion en une liste
+			L=L+l
+
+		o=0
+		ListOut=[]
+		while o<len(ListEdge):
+			ListOut.append(L)
+			o=o+1		
+
+	elif choice=='no':
+		ListOut=listEdgeOut(JuncId)
+	else:
+		print 'bad communication choice : yes or no'
+		exit()
+	return ListOut
+
+
+
+
 #initialisation de la liste des vehicules visitant chaque intersection
 
 def juncVisitedVehID(ListInter):
@@ -192,9 +218,9 @@ def juncVisitedVehID(ListInter):
 
 #Liste des temps de passage de chaque lien sortant de l'intersection
 
-def currentTravelEdgeOut(index,ListEdgeOut,step):
+def currentTravelEdgeOut(ListEdgeOut,step):
 	CurrentTravelEdgeOut=[]
-	for edge in ListEdgeOut[index]:
+	for edge in ListEdgeOut:
 		#on recupere temps de passage sans vehicule (cas ideal)
 		lane=edge+'_0'
 		L=traci.lane.getLength(lane)
@@ -207,10 +233,10 @@ def currentTravelEdgeOut(index,ListEdgeOut,step):
 
 #Liste des taux d'occupation et vitesses maximales de chaque lien sortant de l'intersection
 
-def occupancyEdgeOut(index,ListEdgeOut,step):
+def occupancyEdgeOut(ListEdgeOut,step):
 	OccupancyEdgeOut=[]
 	MaxSpeedEdgeOut=[]
-	for edge in ListEdgeOut[index]:
+	for edge in ListEdgeOut:
 		#on recupere la vitesse maximale
 		lane=edge+'_0'
 		S=traci.lane.getMaxSpeed(lane)
@@ -223,10 +249,10 @@ def occupancyEdgeOut(index,ListEdgeOut,step):
 
 #Liste Conso moyenne et mini des liens sortants de l'intersection
 
-def consoEdgeOut(index,ListEdgeOut,step):
+def consoEdgeOut(ListEdgeOut,step):
 	ConsoEdgeOut=[]
 	MinConsoEdgeOut=[]
-	for edge in ListEdgeOut[index]:
+	for edge in ListEdgeOut:
 		#on recupere la vitesse maximale en km/h et la longueur en km
 		lane=edge+'_0'
 		S=(float(traci.lane.getMaxSpeed(lane))*36.0)/10.0
@@ -240,14 +266,14 @@ def consoEdgeOut(index,ListEdgeOut,step):
 
 #Liste des liens sortants les plus consommateurs
 
-def badConsoEdge(ConsoEdgeOut,MinConsoEdgeOut,index,ListEdgeOut,JuncId):
+def badConsoEdge(ConsoEdgeOut,MinConsoEdgeOut,ListEdgeOut,JuncId):
 	l=0
 	badConsoEdge=[]
 	#Liens sortants depassant le seuil de Consommation
-	while l<len(ListEdgeOut[index]):
+	while l<len(ListEdgeOut):
 		threshold = MinConsoEdgeOut[l]*2
 		if (ConsoEdgeOut[l] >= threshold):
-			badConsoEdge.append(ListEdgeOut[index][l])
+			badConsoEdge.append(ListEdgeOut[l])
 		l=l+1
 	return badConsoEdge
 
@@ -255,38 +281,38 @@ def badConsoEdge(ConsoEdgeOut,MinConsoEdgeOut,index,ListEdgeOut,JuncId):
 
 #Liste des liens sortant les plus longs en temps de passage
 
-def slowEdge(OccupancyEdgeOut,MaxSpeedEdgeOut,index,ListEdgeOut,JuncId):
+def slowEdge(OccupancyEdgeOut,MaxSpeedEdgeOut,ListEdgeOut,JuncId):
 	l=0
 	IntersectionCongestion=[]
 	SlowEdge=[]
 	#Liens sortants depassant le seuil de congestion
-	while l<len(ListEdgeOut[index]):
+	while l<len(ListEdgeOut):
 		if MaxSpeedEdgeOut[l] <= 13.89:
 			threshold = 0.20
 		if MaxSpeedEdgeOut[l] > 13.89:
 			threshold = 0.16
 		if (OccupancyEdgeOut[l] >= threshold):
-			SlowEdge.append(ListEdgeOut[index][l])			
+			SlowEdge.append(ListEdgeOut[l])			
 		l=l+1
 	return SlowEdge,IntersectionCongestion
 
 
 #Liste des liens sortants depassant seuil compromis temps conso
 
-def slowAndbadConsoEdge(r,OccupancyEdgeOut,ConsoEdgeOut,MinConsoEdgeOut,index,ListEdgeOut,JuncId,MaxSpeedEdgeOut):
+def slowAndbadConsoEdge(r,OccupancyEdgeOut,ConsoEdgeOut,MinConsoEdgeOut,ListEdgeOut,JuncId,MaxSpeedEdgeOut):
 	SlowAndbadConsoEdge=[]
 	l=0
-	while l<len(ListEdgeOut[index]):
+	while l<len(ListEdgeOut):
 		if MaxSpeedEdgeOut[l] <= 13.89:
 			threshold = r*0.20+(1-r)*MinConsoEdgeOut[l]*2.0
 		if MaxSpeedEdgeOut[l] > 13.89:
 			threshold = r*0.16+(1-r)*MinConsoEdgeOut[l]*2.0
 		measure=r*OccupancyEdgeOut[l]+(1-r)*ConsoEdgeOut[l]
-		#print ListEdgeOut[index][l]
+		#print ListEdgeOut[l]
 		#print OccupancyEdgeOut[l]
 		#print ConsoEdgeOut[l]
 		if (measure>= threshold):
-			SlowAndbadConsoEdge.append(ListEdgeOut[index][l])
+			SlowAndbadConsoEdge.append(ListEdgeOut[l])
 		l=l+1
 	return SlowAndbadConsoEdge
 
@@ -322,6 +348,8 @@ def routeWeight(Para,Liste):
 			traci.edge.setEffort(edge,measure)
 
 
+
+#permet de calculer le poids total d'un trajet selon le temps ou la consommation
 		
 def travelWeight(Liste,Travel,step,Para):
 	if Para=='Time':
@@ -342,6 +370,7 @@ def travelWeight(Liste,Travel,step,Para):
 
 
 
+#donne la moyenne geometrique de la satisfaction
 
 def globalsatisfaction(Liste,LenRoute):
 	i=0
