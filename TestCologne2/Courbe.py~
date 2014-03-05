@@ -89,9 +89,9 @@ for density in Density:
 		smooth=listeCoeff[b][2]
 		sys.argv=["runnerLocal2.py",green,quick,smooth,'no']
 		execfile("runnerLocal2.py")
-		ListGreen=
-		ListQuick=
-		ListSmooth=
+		ListGreen=changeVehGreen
+		ListQuick=changeVehQuick
+		ListSmooth=changeVehSmooth
 		time.sleep(2)	
 		execfile("summaryLocal.py")
 		time.sleep(2)
@@ -120,9 +120,9 @@ for density in Density:
 		ValueApp.append([green,quick,smooth,density])
 		WaitLocal.append(float(MeanwaitSteps))
 
-		plt.plot(SatisG,'go')
-		plt.plot(SatisQ,'go')
-		plt.plot(SatisS,'go')	
+		plt.plot(SatisG,'go',color='g')
+		plt.plot(SatisQ,'go',color='r')
+		plt.plot(SatisS,'go',color='b')	
 
 		plt.ylim(0,5)
 		plt.ylabel('Satisfaction')

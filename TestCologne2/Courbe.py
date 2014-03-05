@@ -129,7 +129,7 @@ for density in Density:
 		plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
 	
 		plt.figure()
-		plt.show()
+		
 
 
 	
