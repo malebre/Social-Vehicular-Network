@@ -17,19 +17,32 @@ identiteWO= map(xmlAttr.getContent,ctxt2.xpathEval("//@id"))
 
 #Liste des vehicules ayant ete reroutes 
 
-ListVehicle=sys.argv[1]
-
+ListVehicleGreen=sys.argv[1]
+ListVehicleQuick=sys.argv[2]
+ListVehicleSmooth=sys.argv[3]
 
 #energistrement de leur satisfaction (rapport des temps sans et avec information)
 
-SatisfactionDuration=[]
+SatisfactionDurationGreen=[]
 for vehID in identite :
-	if (vehID in ListVehicle) :
+	if (vehID in ListVehicleGreen) :
 		i=identite.index(vehID)		
 		duration[i]=float(duration[i])
 		j=identiteWO.index(vehID)	
-		durationWO[i]=float(durationWO[i])
-		SatisfactionDuration.append([durationWO[i]/duration[i]])
+		durationWO[j]=float(durationWO[j])
+		SatisfactionDurationGreen.append(durationWO[j]/duration[i])
+	if (vehID in ListVehicleQuick) :
+		i=identite.index(vehID)		
+		duration[i]=float(duration[i])
+		j=identiteWO.index(vehID)	
+		durationWO[j]=float(durationWO[j])
+		SatisfactionDurationQuick.append(durationWO[j]/duration[i])	
+	if (vehID in ListVehicleSmooth) :
+		i=identite.index(vehID)		
+		duration[i]=float(duration[i])
+		j=identiteWO.index(vehID)	
+		durationWO[j]=float(durationWO[j])
+		SatisfactionDurationSmooth.append(durationWO[j]/duration[i])	
 
 #on calcule la moyenne geometrique des satisfactions
 

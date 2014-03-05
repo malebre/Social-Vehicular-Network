@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-communication=sys.argv[1]
+#communication=sys.argv[1]
 
  
 Density=["0.8"]
@@ -68,10 +68,11 @@ for density in Density:
 
 	WaitLocal=[]
 
-	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91]] 
+	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41]]
+#[28, 16, 56],[29, 0, 71],[5, 4, 91]] 
 	#len(listeCoeff)
 	b=0
-	while b< 1:
+	while b< len(listeCoeff):
 
 
 		changeValueDensity("data/mapLocal.sumocfg",density)
@@ -86,18 +87,22 @@ for density in Density:
 		green=listeCoeff[b][0]
 		quick=listeCoeff[b][1]
 		smooth=listeCoeff[b][2]
-		sys.argv=["runnerLocal2.py",green,quick,smooth,communication]
+		sys.argv=["runnerLocal2.py",green,quick,smooth,'no']
 		execfile("runnerLocal2.py")
-		ListeVehReroute=changeVeh
+		ListGreen=changeVehGreen
+		ListQuick=changeVehQuick
+		ListSmooth=changeVehSmooth
 		time.sleep(2)	
 		execfile("summaryLocal.py")
 		time.sleep(2)
 		TravelTimeLocal=MeanDuration
 		ConsoLocal=MeanFuelConso
-		sys.argv=["satisfaction.py",ListeVehReroute]
+		sys.argv=["satisfaction.py",ListGreen,ListQuick,ListSmooth]
 		execfile("satisfaction.py")
 		time.sleep(2)
-		Satis=SatisfactionDuration
+		SatisG=SatisfactionDurationGreen
+		SatisQ=SatisfactionDurationQuick
+		SatisS=SatisfactionDurationSmooth
 		
 
 		
@@ -114,6 +119,17 @@ for density in Density:
 		print b
 		ValueApp.append([green,quick,smooth,density])
 		WaitLocal.append(float(MeanwaitSteps))
+
+		plt.plot(SatisG,'go',color='g')
+		plt.plot(SatisQ,'go',color='r')
+		plt.plot(SatisS,'go',color='b')	
+
+		plt.ylim(0,5)
+		plt.ylabel('Satisfaction')
+		plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
+	
+		plt.figure()
+		plt.show()
 
 
 	
@@ -177,12 +193,7 @@ for density in Density:
 	
 	plt.figure()
 
-	plt.plot(Satis, 'go')	
-	plt.ylim(0,5)
-	plt.ylabel('Satisfaction')
-	plt.title(str(NumVeh[iteration-1])+" cars, density = "+ str(Density[iteration-1]))
-	
-	plt.figure()
+
 
 
 	p4 = plt.bar(ind, GConso, width, color='g')

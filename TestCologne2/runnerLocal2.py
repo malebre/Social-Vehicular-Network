@@ -108,7 +108,9 @@ ListvehID=[]
 
 #vehicule changeant de route pour mesurer la Satisfaction
 
-changeVeh=[]
+changeVehGreen=[]
+changeVehQuick=[]
+changeVehSmooth=[]
 
 
 while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
@@ -185,8 +187,8 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 
 				#on test si il ya changement de route:
 				if  Route!=traci.route.getEdges(traci.vehicle.getRouteID(vehID)):
-					if not(vehID in changeVeh):
-						changeVeh.append(vehID)
+					if not(vehID in changeVehGreen):
+						changeVehGreen.append(vehID)
 		
 		#initialisation des poids 
 		routeWeight('Conso',ListEdgeOut[index])
@@ -226,8 +228,8 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 
 				#on test si il ya changement de route:
 				if  Route!=traci.route.getEdges(traci.vehicle.getRouteID(vehID)):
-					if not(vehID in changeVeh):
-						changeVeh.append(vehID)
+					if not(vehID in changeVehSmooth):
+						changeVehSmooth.append(vehID)
 
 		
 		#initialistion des poids pour l'appli greenway
@@ -259,8 +261,8 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 
 				#on test si il ya changement de route:
 				if  Route!=traci.route.getEdges(traci.vehicle.getRouteID(vehID)):
-					if not(vehID in changeVeh):
-						changeVeh.append(vehID)
+					if not(vehID in changeVehQuick):
+						changeVehQuick.append(vehID)
 
 		
 		#initialistion des poids 
