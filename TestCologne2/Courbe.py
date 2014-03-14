@@ -68,10 +68,12 @@ for density in Density:
 
 	WaitLocal=[]
 
-	listeCoeff=[[18, 65, 17],[0,0,100],[100,0,0],[0,100,0]]
+	listeCoeff=[[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41]]
+#[18, 65, 17],[0,0,100],[100,0,0],[0,100,0]]
 #[97, 1, 2],[26, 49, 25],[62, 20, 18],[62, 30, 8]]
-#[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41]]
+
 #[28, 16, 56], [29, 0, 71], [5, 4, 91],[84, 2, 14]
+#[12, 88, 0],[14, 82, 4],[70, 13, 17],[39, 20, 41]]
 	#len(listeCoeff)
 	b=0
 	while b< len(listeCoeff):
@@ -102,9 +104,9 @@ for density in Density:
 		sys.argv=["satisfaction.py",ListGreen,ListQuick,ListSmooth]
 		execfile("satisfaction.py")
 		time.sleep(2)
-		SatisG=SatisfactionDurationGreen
+		SatisG=SatisfactionFuelGreen
 		SatisQ=SatisfactionDurationQuick
-		SatisS=SatisfactionDurationSmooth
+		SatisS=SatisfactionSmooth
 		
 
 		

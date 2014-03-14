@@ -102,9 +102,9 @@ for density in Density:
 		sys.argv=["satisfaction.py",ListGreen,ListQuick,ListSmooth]
 		execfile("satisfaction.py")
 		time.sleep(2)
-		SatisG=SatisfactionDurationGreen
+		SatisG=SatisfactionFuelGreen
 		SatisQ=SatisfactionDurationQuick
-		SatisS=SatisfactionDurationSmooth
+		SatisS=SatisfactionSmooth
 		
 
 		

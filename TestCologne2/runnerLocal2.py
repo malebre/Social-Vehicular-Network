@@ -229,7 +229,7 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 				#on test si il ya changement de route:
 				if  Route!=traci.route.getEdges(traci.vehicle.getRouteID(vehID)):
 					if not(vehID in changeVehSmooth):
-						changeVehSmooth.append(vehID)
+						changeVehSmooth.append([vehID,r])
 
 		
 		#initialistion des poids pour l'appli greenway
