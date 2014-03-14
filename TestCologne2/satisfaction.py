@@ -25,9 +25,9 @@ ListSmooth=sys.argv[3]
 
 ListVehicleSmooth=[]
 ListVehicleSmoothChoice=[]
-for smooth in ListSmooth:
-	ListVehicleSmooth.append(smooth[0])
-	ListVehicleSmoothChoice.append(smooth[1])
+for s in ListSmooth:
+	ListVehicleSmooth.append(s[0])
+	ListVehicleSmoothChoice.append(s[1])
 
 
 #energistrement de leur satisfaction (rapport des temps sans et avec information)
@@ -65,11 +65,32 @@ for vehID in identite :
 
 #on calcule la moyenne geometrique des satisfactions
 Satisfaction=SatisfactionFuelGreen+SatisfactionDurationQuick+SatisfactionSmooth
-result=1
-for satisf in Satisfaction:
-	result=satisf*result
+resultGreen=1
+for satisf in SatisfactionFuelGreen:
+	resultGreen=satisf*resultGreen
+MeanSatisfactionGreen=1
+if len(SatisfactionFuelGreen)!=0:
+	MeanSatisfactionGreen=pow(resultGreen,1.0/float(len(SatisfactionFuelGreen)))
 
-MeanSatisfaction=pow(result,1.0/float(len(Satisfaction)))
+resultQuick=1
+for satisf in SatisfactionDurationQuick:
+	resultQuick=satisf*resultQuick
+MeanSatisfactionQuick=1
+if len(SatisfactionDurationQuick)!=0:
+	MeanSatisfactionQuick=pow(resultQuick,1.0/float(len(SatisfactionDurationQuick)))
+
+resultSmooth=1
+for satisf in SatisfactionSmooth:
+	resultSmooth=satisf*resultSmooth
+MeanSatisfactionSmooth=1
+if len(SatisfactionSmooth)!=0:
+	MeanSatisfactionSmooth=pow(resultSmooth,1.0/float(len(SatisfactionSmooth)))
+
+
+print MeanSatisfactionGreen
+print MeanSatisfactionQuick
+print MeanSatisfactionSmooth
+
 
 
 
