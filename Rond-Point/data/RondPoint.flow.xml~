@@ -1,5 +1,5 @@
 <flows>
-    <vType id="Vehicle" length="4" maxSpeed="90" minGap="2">
+    <vType id="Vehicle" length="3" maxSpeed="90" minGap="2">
         <carFollowing-Krauss accel="3.6" decel="4.5" sigma="0.5"/>
     </vType>
 

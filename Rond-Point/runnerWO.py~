@@ -99,7 +99,7 @@ while step==0 or traci.simulation.getMinExpectedNumber() > 0:
     extensionNorth=North[2]
 
     #adaptation du feu vert West2 en fonction du taux d'occupation du lien entrant sur le rond point
-    West2=Adapt('2470886208',ProgramWest2,iWest2,'West2',cycleWest2,extensionWest2)
+    West2=Adapt('2470886209',ProgramWest2,iWest2,'West2',cycleWest2,extensionWest2)
     iWest2=West2[0]
     cycleWest2=West2[1]
     extensionWest2=West2[2]
