@@ -364,7 +364,7 @@ def ChangeBusTrafficLights(loop1,loop2,feu,step,check,Prog,i,ProgInitial,counter
 #--------------------------------
 
 def Creation(feu,Program):
-	d=l=0
+	s=d=l=0
 	if feu=='North':
 		while l<=29:
 			#interieur vert
@@ -404,6 +404,28 @@ def Creation(feu,Program):
 			if 26<d<=32:
 				Program.append("GGG")
 			d=d+1
+	if feu=='South':
+		while s<=29:
+			#interieur vert
+			if s<14:
+				Program.append("rrGGG")
+			#interieur jaune
+			if 14<s<=17:
+				Program.append("rryyy")
+			#tout rouge
+			if 17<s<=18:
+				Program.append("rrrrr")
+			#exterieur vert
+			if 18<s<=24:
+				Program.append("GGrrr")
+			#exterieur jaune
+			if 24<s<=27:
+				Program.append("yyrrr")
+			#tout rouge
+			if 27<s<=29:
+				Program.append("rrrrr")
+
+			s=s+1
 	return Program
 
 ################################################################################################################
@@ -487,6 +509,43 @@ def Adapt(feu,Prog,i,pos,cycle,extension):
 
 			#reprise du cycle normal 
 			elif i>=1 and cycle>=40 :
+				traci.trafficlights.setRedYellowGreenState(feu,Prog[i])
+				i=i+1
+	if pos=='South':
+		if i==len(Prog)-1:
+			traci.trafficlights.setRedYellowGreenState(feu,Prog[i])
+			i=0
+		else:	
+			#debut du cycle du feu
+			if i<7:
+				traci.trafficlights.setRedYellowGreenState(feu,Prog[i])
+				i=i+1
+				if i==6:
+					cycle=0
+
+			#l'adaptation au feu vert ne peut depasser une duree 'cycle' 
+			elif i>=1 and cycle<17 :
+
+				#mise a jour toutes les 3 secondes et le vert au total ne peut depasser 38s
+				if cycle%3==0:
+
+					#mesure du taux d'occupation
+					if (traci.trafficlights.getRedYellowGreenState(feu)=="GGrrr" and traci.edge.getLastStepOccupancy('239331354')>0.15):
+						extension='yes'
+					else:
+						extension='no'
+
+				#prolongement du vert de 3s
+				if extension=='yes':
+					traci.trafficlights.setRedYellowGreenState(feu,"GGrrr")
+					cycle=cycle+1
+
+				#arret du prolongement
+				elif extension=='no': 
+					cycle=17
+
+			#reprise du cycle normal 
+			elif i>=1 and cycle>=17 :
 				traci.trafficlights.setRedYellowGreenState(feu,Prog[i])
 				i=i+1
 		

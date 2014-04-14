@@ -81,6 +81,7 @@ ListGreenWay=ListVehApplications[0]
 ListQuickWay=ListVehApplications[1]
 ListSmoothWay=ListVehApplications[2]
 
+
 #initialisation des listes de donnees enregistrees en temps reel a chaque intersection
 MaxSpeedEdgeOut=len(ListInter)*['']
 OccupancyEdgeOut=len(ListInter)*['']

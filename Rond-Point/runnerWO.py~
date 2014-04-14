@@ -62,12 +62,13 @@ programPointer2=len(Program2)-3
 #creation feu North et West2
 ProgramNorth=Creation('North',[])
 ProgramWest2=Creation('West2',[])
+ProgramSouth=Creation('South',[])
 
 #pas de temps
 step = 0
 
 #pas des feux
-iWest2=iNorth=i1=i2=0
+iSouth=iWest2=iNorth=i1=i2=0
 
 #enregistrement d'un passage de bus
 check1=check2='ok'
@@ -77,32 +78,52 @@ counter1=counter2=0
 b1=b2=0
 
 #parametre de mise a jour toute les 3s du feu vert en fonction du taux d'occupation
-cycleNorth=cycleWest2=cycle1=cycle2=0
+cycleSouth=cycleNorth=cycleWest2=cycle1=cycle2=0
 
 #marque le taux d'occupation et le besoin d'etendre le feu vert
-extensionNorth=extensionWest2=extension1=extension2=''
+extensionSouth=extensionNorth=extensionWest2=extension1=extension2=''
 
 ###############################################################################################""
 
 #debut de la simulation
 
 #---------------------
-
+doc=libxml2.parseFile("data/RondPoint.rou.xml")
+ctxt=doc.xpathNewContext()
+duration= map(xmlAttr.getContent,ctxt.xpathEval("//@depart"))
+print len(duration)
+doc=libxml2.parseFile("data/RondPointBus.rou.xml")
+ctxt=doc.xpathNewContext()
+duration= map(xmlAttr.getContent,ctxt.xpathEval("//@depart"))
+print len(duration)
 
 while step==0 or traci.simulation.getMinExpectedNumber() > 0:
     traci.simulationStep()
 
-    #adaptation du feu vert Nord en fonction du taux d'occupation du lien entrant sur le rond point
-    North=Adapt('431399475',ProgramNorth,iNorth,'North',cycleNorth,extensionNorth)
-    iNorth=North[0]
-    cycleNorth=North[1]
-    extensionNorth=North[2]
+    #on bloque les 100 premieres secondes au rouge pour accumuler les voitures pour avoir l'effet d'une simulation continue
+    if step<100:
+	    traci.trafficlights.setRedYellowGreenState('431399475',"rrrrr")
+	    traci.trafficlights.setRedYellowGreenState('2470886208',"rrr")
+	    traci.trafficlights.setRedYellowGreenState('1214943548',"rrrrr")
+    else:
 
-    #adaptation du feu vert West2 en fonction du taux d'occupation du lien entrant sur le rond point
-    West2=Adapt('2470886209',ProgramWest2,iWest2,'West2',cycleWest2,extensionWest2)
-    iWest2=West2[0]
-    cycleWest2=West2[1]
-    extensionWest2=West2[2]
+	    #adaptation du feu vert Nord en fonction du taux d'occupation du lien entrant sur le rond point
+	    North=Adapt('431399475',ProgramNorth,iNorth,'North',cycleNorth,extensionNorth)
+	    iNorth=North[0]
+	    cycleNorth=North[1]
+	    extensionNorth=North[2]
+
+	    #adaptation du feu vert West2 en fonction du taux d'occupation du lien entrant sur le rond point
+	    West2=Adapt('2470886208',ProgramWest2,iWest2,'West2',cycleWest2,extensionWest2)
+	    iWest2=West2[0]
+	    cycleWest2=West2[1]
+	    extensionWest2=West2[2]
+
+	    #adaptation du feu vert South en fonction du taux d'occupation du lien entrant sur le rond point
+	    South=Adapt('1214943548',ProgramSouth,iSouth,'South',cycleSouth,extensionSouth)
+	    iSouth=South[0]
+	    cycleSouth=South[1]
+	    extensionSouth=South[2]
 
     #on bloque les 100 premieres secondes au rouge pour accumuler les voitures pour avoir l'effet d'une simulation continue
     if step<100:

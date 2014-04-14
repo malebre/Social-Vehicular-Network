@@ -7,8 +7,16 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 
 sys.path.append(os.path.join(os.environ.get("SUMO_HOME", os.path.join(os.path.dirname(__file__), "..", "..", "..")), "tools")) # tutorial in docs
 from sumolib import checkBinary
 import traci
+from fonctionLocal2 import intersect
 
 PORT = 8814
+
+
+ListGreen=sys.argv[1]
+ListQuick=sys.argv[2]
+ListSmooth=sys.argv[3]
+Compromis=sys.argv[4]
+
 
 	
 
@@ -42,7 +50,7 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 	traci.edge.adaptTraveltime(edge,traci.edge.getTraveltime(edge))
 
    # reroutage global des vehicules en fonction des nouveaux poids des liens de la carte, reroutage a chaque fois que le vehicule change de lien 
-    for vehID in traci.vehicle.getIDList():
+    for vehID in intersect(traci.vehicle.getIDList(),ListQuick):
 	if not(vehID in ListevehID):
 		ListevehID.append(vehID)
 		ListeCurrentRoad.append([])
@@ -55,6 +63,74 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 		#le vehicule change de lien
 		if l>3 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]!=ListeCurrentRoad[ListevehID.index(vehID)][l-3] and Done[ListevehID.index(vehID)]!='ok':
        			traci.vehicle.rerouteTraveltime(vehID)
+			Done[ListevehID.index(vehID)]='ok'
+
+		#le vehicule ne change pas de lien
+		if l>2 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]==ListeCurrentRoad[ListevehID.index(vehID)][l-2]:
+			Done[ListevehID.index(vehID)]='ini'
+
+
+
+
+
+
+
+
+
+
+    #changement du poids de chaque lien de la carte en fonction de la longueur du lien et de la vitesse moyenne des vehicules presents dessus
+    for edge in traci.edge.getIDList():
+	traci.edge.setEffort(edge,traci.edge.getFuelConsumption(edge))
+
+   # reroutage global des vehicules en fonction des nouveaux poids des liens de la carte, reroutage a chaque fois que le vehicule change de lien 
+    for vehID in intersect(traci.vehicle.getIDList(),ListGreen):
+	if not(vehID in ListevehID):
+		ListevehID.append(vehID)
+		ListeCurrentRoad.append([])
+		Done.append([])
+	CurrentRoad=traci.vehicle.getRoadID(vehID)
+	if CurrentRoad in traci.vehicle.getRoute(vehID):
+		ListeCurrentRoad[ListevehID.index(vehID)].append(CurrentRoad)
+		l=len(ListeCurrentRoad[ListevehID.index(vehID)])
+		
+		#le vehicule change de lien
+		if l>3 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]!=ListeCurrentRoad[ListevehID.index(vehID)][l-3] and Done[ListevehID.index(vehID)]!='ok':
+       			traci.vehicle.rerouteEffort(vehID)
+			Done[ListevehID.index(vehID)]='ok'
+
+		#le vehicule ne change pas de lien
+		if l>2 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]==ListeCurrentRoad[ListevehID.index(vehID)][l-2]:
+			Done[ListevehID.index(vehID)]='ini'
+
+
+
+
+
+
+
+
+
+ 
+
+   # reroutage global des vehicules en fonction des nouveaux poids des liens de la carte, reroutage a chaque fois que le vehicule change de lien 
+    for vehID in intersect(traci.vehicle.getIDList(),ListSmooth):
+	if not(vehID in ListevehID):
+		ListevehID.append(vehID)
+		ListeCurrentRoad.append([])
+		Done.append([])
+	CurrentRoad=traci.vehicle.getRoadID(vehID)
+	if CurrentRoad in traci.vehicle.getRoute(vehID):
+		ListeCurrentRoad[ListevehID.index(vehID)].append(CurrentRoad)
+		l=len(ListeCurrentRoad[ListevehID.index(vehID)])
+		
+		#le vehicule change de lien
+		if l>3 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]!=ListeCurrentRoad[ListevehID.index(vehID)][l-3] and Done[ListevehID.index(vehID)]!='ok':
+			   #changement du poids de chaque lien de la carte
+    			for edge in traci.edge.getIDList():
+				r=Compromis[ListSmooth.index(vehID)]
+				measure=r*traci.edge.getTraveltime(edge)+(1-r)*traci.edge.getFuelConsumption(edge)	
+				traci.edge.setEffort(edge,measure)
+       			traci.vehicle.rerouteEffort(vehID)
 			Done[ListevehID.index(vehID)]='ok'
 
 		#le vehicule ne change pas de lien

@@ -14,12 +14,15 @@
         <begin value="0"/>
     </time>
     <report>
-	<no-step-log value="true"/>
+	<no-step-log value="True"/>
+	<no-warnings value="True"/>
     </report>
    <traci_server>
     	<processing>
         	<lanechange.allow-swap value="True"/>
         	<time-to-teleport value="400"/>
+		<ignore-accidents value="True"/> 	
+		<ignore-route-errors value="True"/>
     	</processing>
          <remote-port value="8815"/>
     </traci_server>

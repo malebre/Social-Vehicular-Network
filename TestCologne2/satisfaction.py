@@ -1,5 +1,6 @@
 import libxml2
 from libxml2 import xmlAttr
+from fonctionLocal2 import intersect
 
 #recuperation des temps de trajet des vehicules arrivees avec information partielle
 
@@ -16,6 +17,15 @@ ctxt2=doc2.xpathNewContext()
 durationWO= map(xmlAttr.getContent,ctxt2.xpathEval("//@duration"))
 fuelWO=map(xmlAttr.getContent,ctxt2.xpathEval("//@fuel_abs "))
 identiteWO= map(xmlAttr.getContent,ctxt2.xpathEval("//@id"))
+
+
+#recuperation des temps de trajet des memes vehicules avec toute l'info
+
+doc3=libxml2.parseFile("data/maptripinfo.out.xml")
+ctxt3=doc3.xpathNewContext()
+durationAll= map(xmlAttr.getContent,ctxt3.xpathEval("//@duration"))
+fuelAll=map(xmlAttr.getContent,ctxt3.xpathEval("//@fuel_abs "))
+identiteAll= map(xmlAttr.getContent,ctxt3.xpathEval("//@id"))
 
 #Liste des vehicules ayant ete reroutes 
 
@@ -38,33 +48,51 @@ SatisfactionFuelGreen=[]
 SatisfactionSmooth=[]
 
 
+SatisfactionDurationQuickAll=[]
+SatisfactionFuelGreenAll=[]
+SatisfactionSmoothAll=[]
+
+
 
 for vehID in identite :
-	if (vehID in ListVehicleGreen) :
+	if (vehID in intersect(ListVehicleGreen,identiteAll)) :
 		i=identite.index(vehID)		
 		fuel[i]=float(fuel[i])
 		j=identiteWO.index(vehID)	
 		fuelWO[j]=float(fuelWO[j])
+		k=identiteAll.index(vehID)	
+		fuelAll[k]=float(fuelAll[k])
 		SatisfactionFuelGreen.append(fuelWO[j]/fuel[i])
-	if (vehID in ListVehicleQuick) :
+		SatisfactionFuelGreenAll.append(fuelWO[j]/fuelAll[k])
+	if (vehID in intersect(ListVehicleQuick,identiteAll)) :
 		i=identite.index(vehID)		
 		duration[i]=float(duration[i])
 		j=identiteWO.index(vehID)	
 		durationWO[j]=float(durationWO[j])
-		SatisfactionDurationQuick.append(durationWO[j]/duration[i])	
-	if (vehID in ListVehicleSmooth) :
+		k=identiteAll.index(vehID)
+		durationAll[k]=float(durationAll[k])	
+		SatisfactionDurationQuick.append(durationWO[j]/duration[i])
+		SatisfactionDurationQuickAll.append(durationWO[j]/durationAll[k])		
+	if (vehID in intersect(ListVehicleSmooth,identiteAll)) :
 		i=identite.index(vehID)		
 		duration[i]=float(duration[i])
 		fuel[i]=float(fuel[i])
 		j=identiteWO.index(vehID)	
 		durationWO[j]=float(durationWO[j])
 		fuelWO[j]=float(fuelWO[j])
+		k=identiteAll.index(vehID)	
+		durationAll[k]=float(durationAll[k])
+		fuelAll[k]=float(fuelAll[k])
 		r=ListVehicleSmoothChoice[ListVehicleSmooth.index(vehID)]
-		coeff=((r*durationWO[j]+(1-r)*fuelWO[j])/(r*duration[i]+(1-r)*fuel[i]))
-		SatisfactionSmooth.append(coeff)	
+		coeffWO=((r*durationWO[j]+(1-r)*fuelWO[j])/(r*duration[i]+(1-r)*fuel[i]))
+		coeffAll=((r*durationWO[j]+(1-r)*fuelWO[j])/(r*durationAll[k]+(1-r)*fuelAll[k]))
+		SatisfactionSmooth.append(coeffWO)
+		SatisfactionSmoothAll.append(coeffAll)	
 
 #on calcule la moyenne geometrique des satisfactions
 Satisfaction=SatisfactionFuelGreen+SatisfactionDurationQuick+SatisfactionSmooth
+SatisfactionAll=SatisfactionFuelGreenAll+SatisfactionDurationQuickAll+SatisfactionSmoothAll
+
 resultGreen=1
 for satisf in SatisfactionFuelGreen:
 	resultGreen=satisf*resultGreen
@@ -87,9 +115,32 @@ if len(SatisfactionSmooth)!=0:
 	MeanSatisfactionSmooth=pow(resultSmooth,1.0/float(len(SatisfactionSmooth)))
 
 
-print MeanSatisfactionGreen
-print MeanSatisfactionQuick
-print MeanSatisfactionSmooth
+
+
+
+resultGreenAll=1
+for satisf in SatisfactionFuelGreenAll:
+	resultGreenAll=satisf*resultGreenAll
+MeanSatisfactionGreenAll=1
+if len(SatisfactionFuelGreenAll)!=0:
+	MeanSatisfactionGreenAll=pow(resultGreenAll,1.0/float(len(SatisfactionFuelGreenAll)))
+
+resultQuickAll=1
+for satisf in SatisfactionDurationQuickAll:
+	resultQuickAll=satisf*resultQuickAll
+MeanSatisfactionQuickAll=1
+if len(SatisfactionDurationQuickAll)!=0:
+	MeanSatisfactionQuickAll=pow(resultQuickAll,1.0/float(len(SatisfactionDurationQuickAll)))
+
+resultSmoothAll=1
+for satisf in SatisfactionSmoothAll:
+	resultSmoothAll=satisf*resultSmoothAll
+MeanSatisfactionSmoothAll=1
+if len(SatisfactionSmoothAll)!=0:
+	MeanSatisfactionSmoothAll=pow(resultSmoothAll,1.0/float(len(SatisfactionSmoothAll)))
+
+
+
 
 
 
