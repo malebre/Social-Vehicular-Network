@@ -222,15 +222,15 @@ for density in Density:
 
 
 			#temps
-			RateTravelTimeLocalQuickAll=MeanDurationQuickAll/MeanDurationQuickW
+			RateTravelTimeQuickAll=MeanDurationQuickAll/MeanDurationQuickW
 			RateMaxTimeQuickAll=MaxTQAll/WMaxTQ
 			RateMinTimeQuickAll=MinTQAll/WMinTQ
 			#conso
-			RateConsoLocalQuickAll=MeanFuelConsoQuickAll/MeanFuelConsoQuickW
+			RateConsoQuickAll=MeanFuelConsoQuickAll/MeanFuelConsoQuickW
 			RateMaxFuelQuickAll=MaxFQAll/WMaxFQ
 			RateMinFuelQuickAll=MinFQAll/WMinFQ
 			#attente
-			RateWaitLocalQuickAll=MeanwaitStepsQuickAll/MeanwaitStepsQuickW
+			RateWaitQuickAll=MeanwaitStepsQuickAll/MeanwaitStepsQuickW
 			RateMaxWaitQuickAll=MaxWQAll/WMaxWQ
 			RateMinWaitQuickAll=MinWQAll/WMinWQ
 			
@@ -240,15 +240,15 @@ for density in Density:
 
 
 			#temps
-			RateTravelTimeLocalSmoothAll=MeanDurationSmoothAll/MeanDurationSmoothW
+			RateTravelTimeSmoothAll=MeanDurationSmoothAll/MeanDurationSmoothW
 			RateMaxTimeSmoothAll=MaxTSAll/WMaxTS
 			RateMinTimeSmoothAll=MinTSAll/WMinTS
 			#conso
-			RateConsoLocalSmoothAll=MeanFuelConsoSmoothAll/MeanFuelConsoSmoothW
+			RateConsoSmoothAll=MeanFuelConsoSmoothAll/MeanFuelConsoSmoothW
 			RateMaxFuelSmoothAll=MaxFSAll/WMaxFS
 			RateMinFuelSmoothAll=MinFSAll/WMinFS
 			#attente
-			RateWaitLocalSmoothAll=MeanwaitStepsSmoothAll/MeanwaitStepsSmoothW
+			RateWaitSmoothAll=MeanwaitStepsSmoothAll/MeanwaitStepsSmoothW
 			RateMaxWaitSmoothAll=MaxWSAll/WMaxWS
 			RateMinWaitSmoothAll=MinWSAll/WMinWS
 
@@ -257,15 +257,15 @@ for density in Density:
 
 		#total
 		#temps
-		RateTravelTimeLocalAll=MeanDurationAll/MeanDurationW
+		RateTravelTimeAll=MeanDurationAll/MeanDurationW
 		RateMaxTimeAll=MaxTAll/WMaxT
 		RateMinTimeAll=MinTAll/WMinT
 		#conso
-		RateConsoLocalAll=MeanFuelConsoAll/MeanFuelConsoW
+		RateConsoAll=MeanFuelConsoAll/MeanFuelConsoW
 		RateMaxFuelAll=MaxFAll/WMaxF
 		RateMinFuelAll=MinFAll/WMinF
 		#attente
-		RateWaitLocalAll=MeanwaitStepsAll/MeanwaitStepsW
+		RateWaitAll=MeanwaitStepsAll/MeanwaitStepsW
 		RateMaxWaitAll=MaxWAll/WMaxW
 		RateMinWaitAll=MinWAll/WMinW
 
@@ -312,7 +312,7 @@ for density in Density:
 
 
 		if len(ListQuick)>0:
-			RadarQ=[[RateSatisfactionQuick,RateTravelTimeLocalQuick,RateConsoLocalQuick,RateWaitLocalQuick,RateMinFuelQuick,RateMaxFuelQuick,RateMinTimeQuick,RateMaxTimeQuick,RateMaxWaitQuick],[RateSatisfactionQuickAll,RateTravelTimeAll,RateConsoAll,RateWaitAll,RateMinFuelAll,RateMaxFuelAll,RateMinWaitAll,RateMaxTimeAll,RateMaxWaitAll],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
+			RadarQ=[[RateSatisfactionQuick,RateTravelTimeLocalQuick,RateConsoLocalQuick,RateWaitLocalQuick,RateMinFuelQuick,RateMaxFuelQuick,RateMinTimeQuick,RateMaxTimeQuick,RateMaxWaitQuick],[RateSatisfactionQuickAll,RateTravelTimeQuickAll,RateConsoQuickAll,RateWaitQuickAll,RateMinFuelQuickAll,RateMaxFuelQuickAll,RateMinWaitQuickAll,RateMaxTimeQuickAll,RateMaxWaitQuickAll],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
 		else :
 			RadarQ=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
 

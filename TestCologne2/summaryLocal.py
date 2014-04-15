@@ -49,7 +49,7 @@ print len(ListQuick)
 #initialisation des parametres
 i=0
 
-#Avec reroutage
+#Avec reroutage Local
 #Temps total
 TotalDurationGreen=TotalDuration=TotalDurationQuick=TotalDurationSmooth=0.0
 #Temps d'attente
@@ -148,7 +148,7 @@ while i<len(duration):
 
 	if veh[i] in ListGreen:
 		
-		#Temps Avec reroutage
+		#Temps Avec reroutage Local
 		j=vehW.index(veh[i])
 		if duration[i]>MaxTG:
 			MaxTG=duration[i]
@@ -156,14 +156,14 @@ while i<len(duration):
 			MinTG=duration[i]
 		TotalDurationGreen=TotalDurationGreen+duration[i]
 		
-		#Temps d'attente Avec reroutage
+		#Temps d'attente Avec reroutage Local
 		if waitSteps[i]>MaxWG:
 			MaxWG=waitSteps[i]
 		if waitSteps[i]<MinWG:
 			MinWG=waitSteps[i]
 		TotalwaitStepsGreen=TotalwaitStepsGreen+waitSteps[i]
 
-		#Consommation Avec reroutage
+		#Consommation Avec reroutage Local
 		if fuel[i]>MaxFG:
 			MaxFG=fuel[i]
 		if fuel[i]<MinFG:
@@ -178,7 +178,7 @@ while i<len(duration):
 
 		#Temps Sans reroutage
 		if durationW[j]>WMaxTG:
-			WMaxTG=duration[j]
+			WMaxTG=durationW[j]
 		if durationW[j]<WMinTG:
 			WMinTG=durationW[j]
 		TotalDurationGreenW=TotalDurationGreenW+durationW[j]
@@ -206,7 +206,7 @@ while i<len(duration):
 
 	if veh[i] in ListQuick:
 
-		#Temps Avec reroutage
+		#Temps Avec reroutage Local
 		j=vehW.index(veh[i])
 		if duration[i]>MaxTQ:
 			MaxTQ=duration[i]
@@ -214,14 +214,14 @@ while i<len(duration):
 			MinTQ=duration[i]
 		TotalDurationQuick=TotalDurationQuick+duration[i]
 		
-		#Temps d'attente Avec reroutage
+		#Temps d'attente Avec reroutage Local
 		if waitSteps[i]>MaxWQ:
 			MaxWQ=waitSteps[i]
 		if waitSteps[i]<MinWQ:
 			MinWQ=waitSteps[i]
 		TotalwaitStepsQuick=TotalwaitStepsQuick+waitSteps[i]
 
-		#Consommation Avec reroutage
+		#Consommation Avec reroutage Local
 		if fuel[i]>MaxFQ:
 			MaxFQ=fuel[i]
 		if fuel[i]<MinFQ:
@@ -266,21 +266,21 @@ while i<len(duration):
 	if veh[i] in ListSmooth:
 		j=vehW.index(veh[i])
 
-		#Temps Avec reroutage
+		#Temps Avec reroutage Local
 		if duration[i]>MaxTS:
 			MaxTS=duration[i]
 		if duration[i]<MinTS:
 			MinTS=duration[i]
 		TotalDurationSmooth=TotalDurationSmooth+duration[i]
 
-		#Temps d'attente Avec reroutage
+		#Temps d'attente Avec reroutage Local
 		if waitSteps[i]>MaxWS:
 			MaxWS=waitSteps[i]
 		if waitSteps[i]<MinWS:
 			MinWS=waitSteps[i]
 		TotalwaitStepsSmooth=TotalwaitStepsSmooth+waitSteps[i]
 
-		#Consommation Avec reroutage
+		#Consommation Avec reroutage Local
 		if fuel[i]>MaxFS:
 			MaxFS=fuel[i]
 		if fuel[i]<MinFS:
