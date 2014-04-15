@@ -225,9 +225,6 @@ while i<len(duration):
 			MaxFQ=fuel[i]
 		if fuel[i]<MinFQ:
 			MinFQ=fuel[i]
-			print "conso fuel"
-			print MinFQ
-			print veh[i]
 		TotalfuelQuick=TotalfuelQuick+fuel[i]
 
 		durationW[j]=float(durationW[j])

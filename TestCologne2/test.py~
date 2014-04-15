@@ -133,11 +133,11 @@ def example_data():
         'GreenWay':
             RadarG,
         'SmoothWay':
-            RadarS,
+            RadarG,
         'QuickWay':
-            RadarQ,
+            RadarG,
         'Global':
-            RadarAll}
+            RadarG}
     return data
 
 

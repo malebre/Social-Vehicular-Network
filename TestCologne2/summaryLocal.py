@@ -57,7 +57,8 @@ TotalwaitStepsGreen=TotalwaitStepsQuick=TotalwaitStepsSmooth=TotalwaitSteps=0.0
 #Consommation
 TotalfuelGreen=TotalfuelQuick=TotalfuelSmooth=Totalfuel=0.0
 #Maximum et Minimum
-MaxT=MaxTG=MaxTQ=MaxTS=MinT=MinTG=MinTQ=MinTS=0.0
+MaxT=MaxTG=MaxTQ=MaxTS=0.0
+MinT=MinTG=MinTQ=MinTS=100000000000.0
 MaxW=MaxWG=MaxWQ=MaxWS=MaxF=MaxFG=MaxFQ=MaxFS=0.0
 MinW=MinWG=MinWQ=MinWS=MinF=MinFG=MinFQ=MinFS=10000000.0
 

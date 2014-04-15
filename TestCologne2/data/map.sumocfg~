@@ -28,7 +28,7 @@
         <scale value="0.8"/>   
         <lanechange.allow-swap value="True"/>
     </processing>
-    <remote-port value="8812"/>
+    <remote-port value="8814"/>
          
   </traci_server>
 
