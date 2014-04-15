@@ -38,11 +38,13 @@ MaxTAll=MaxWAll=MaxFAll=MaxTGAll=MaxWGAll=MaxFGAll=MaxTQAll=MaxWQAll=MaxFQAll=Ma
 #minimum
 MinTAll=MinWAll=MinFAll=MinTGAll=MinWGAll=MinFGAll=MinTQAll=MinWQAll=MinFQAll=MinTSAll=MinWSAll=MinFSAll=1000000.0
 
+####################################################################
+
 #somme de resultats de chaque vehicule
 while i<len(duration):
 
 	
-
+	#Green
 	if veh[i] in ListGreen:
 		#temps
 		duration[i]=float(duration[i])
@@ -68,7 +70,8 @@ while i<len(duration):
 			MinFGAll=fuel[i]
 		TotalfuelGreen=TotalfuelGreen+fuel[i]
 		Totalfuel=Totalfuel+fuel[i]
-
+	
+	#Quick
 	if veh[i] in ListQuick:
 		#temps
 		duration[i]=float(duration[i])
@@ -95,6 +98,7 @@ while i<len(duration):
 		TotalfuelQuick=TotalfuelQuick+fuel[i]
 		Totalfuel=Totalfuel+fuel[i]
 
+	#Smooth
 	if veh[i] in ListSmooth:
 		#temps
 		duration[i]=float(duration[i])

@@ -304,32 +304,30 @@ for density in Density:
 ##############################################################################################################
 
 		#resultat : diagramme radar
+
+		#Green
 		if len(ListGreen)>0:
 			RadarG=[[RateSatisfactionGreen,RateTravelTimeLocalGreen,RateConsoLocalGreen,RateWaitLocalGreen,RateMinFuelGreen,RateMaxFuelGreen,RateMinTimeGreen,RateMaxTimeGreen,RateMaxWaitGreen],[RateSatisfactionGreenAll,RateTravelTimeGreenAll,RateConsoGreenAll,RateWaitGreenAll,RateMinFuelGreenAll,RateMaxFuelGreenAll,RateMinTimeGreenAll,RateMaxTimeGreenAll,RateMaxWaitGreenAll],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
 		else: 
 			RadarG=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
 
 
-
+		#Quick
 		if len(ListQuick)>0:
 			RadarQ=[[RateSatisfactionQuick,RateTravelTimeLocalQuick,RateConsoLocalQuick,RateWaitLocalQuick,RateMinFuelQuick,RateMaxFuelQuick,RateMinTimeQuick,RateMaxTimeQuick,RateMaxWaitQuick],[RateSatisfactionQuickAll,RateTravelTimeQuickAll,RateConsoQuickAll,RateWaitQuickAll,RateMinFuelQuickAll,RateMaxFuelQuickAll,RateMinTimeQuickAll,RateMaxTimeQuickAll,RateMaxWaitQuickAll],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
 		else :
 			RadarQ=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
 
 
-
+		#Smooth
 		if len(ListSmooth)>0:
 			RadarS=[[RateSatisfactionSmooth,RateTravelTimeLocalSmooth,RateConsoLocalSmooth,RateWaitLocalSmooth,RateMinFuelSmooth,RateMaxFuelSmooth,RateMinTimeSmooth,RateMaxTimeSmooth,RateMaxWaitSmooth],[RateSatisfactionSmoothAll,RateTravelTimeSmoothAll,RateConsoSmoothAll,RateWaitSmoothAll,RateMinFuelSmoothAll,RateMaxFuelSmoothAll,RateMinTimeSmoothAll,RateMaxTimeSmoothAll,RateMaxWaitSmoothAll],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
 		else:
 			RadarS=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
 
 
-
+		#total
 		RadarAll=[[RateSatisfaction,RateTravelTimeLocal,RateConsoLocal,RateWaitLocal,RateMinFuel,RateMaxFuel,RateMinTime,RateMaxTime,RateMaxWait],[RateSatisfactionAll,RateTravelTimeAll,RateConsoAll,RateWaitAll,RateMinFuelAll,RateMaxFuelAll,RateMinTimeAll,RateMaxTimeAll,RateMaxWaitAll],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
-
-
-
-
 
 
 		#show figure

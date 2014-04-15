@@ -166,7 +166,7 @@ MeanFuelConsoAll=Totalfuel/len(duration)
 ####################################################################
 
 #maximum et minimum
-MaxTAll=float(max(duration))
+MaxTAll=max(MaxTGAll
 MaxWAll=float(max(waitSteps))
 MaxFAll=float(max(fuel))
 MinTAll=float(min(duration))

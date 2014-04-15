@@ -111,13 +111,16 @@ for satisf in SatisfactionFuelGreen:
 MeanSatisfactionGreen=1
 if len(SatisfactionFuelGreen)!=0:
 	MeanSatisfactionGreen=pow(resultGreen,1.0/float(len(SatisfactionFuelGreen)))
-
+else:
+	MeanSatisfactionGreen=0
 resultQuick=1
 for satisf in SatisfactionDurationQuick:
 	resultQuick=satisf*resultQuick
 MeanSatisfactionQuick=1
 if len(SatisfactionDurationQuick)!=0:
 	MeanSatisfactionQuick=pow(resultQuick,1.0/float(len(SatisfactionDurationQuick)))
+else:
+	MeanSatisfactionQuick=0
 
 resultSmooth=1
 for satisf in SatisfactionSmooth:
@@ -125,6 +128,8 @@ for satisf in SatisfactionSmooth:
 MeanSatisfactionSmooth=1
 if len(SatisfactionSmooth)!=0:
 	MeanSatisfactionSmooth=pow(resultSmooth,1.0/float(len(SatisfactionSmooth)))
+else:
+	MeanSatisfactionSmooth=0
 
 
 
@@ -136,6 +141,8 @@ for satisf in SatisfactionFuelGreenAll:
 MeanSatisfactionGreenAll=1
 if len(SatisfactionFuelGreenAll)!=0:
 	MeanSatisfactionGreenAll=pow(resultGreenAll,1.0/float(len(SatisfactionFuelGreenAll)))
+else:
+	MeanSatisfactionGreenAll=0
 
 resultQuickAll=1
 for satisf in SatisfactionDurationQuickAll:
@@ -143,6 +150,8 @@ for satisf in SatisfactionDurationQuickAll:
 MeanSatisfactionQuickAll=1
 if len(SatisfactionDurationQuickAll)!=0:
 	MeanSatisfactionQuickAll=pow(resultQuickAll,1.0/float(len(SatisfactionDurationQuickAll)))
+else:
+	MeanSatisfactionQuickAll=0
 
 resultSmoothAll=1
 for satisf in SatisfactionSmoothAll:
@@ -150,6 +159,8 @@ for satisf in SatisfactionSmoothAll:
 MeanSatisfactionSmoothAll=1
 if len(SatisfactionSmoothAll)!=0:
 	MeanSatisfactionSmoothAll=pow(resultSmoothAll,1.0/float(len(SatisfactionSmoothAll)))
+else:
+	MeanSatisfactionSmoothAll=0
 
 
 
