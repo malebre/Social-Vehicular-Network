@@ -339,7 +339,7 @@ for density in Density:
 
 
 		#show figure
-		sys.argv=["test.py",RadarG,RadarQ,RadarS,RadarAll]
+		sys.argv=["test.py",RadarG,RadarQ,RadarS,RadarAll,listeCoeff[b]]
 		execfile("test.py")
 
 		b=b+1

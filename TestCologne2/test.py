@@ -7,10 +7,12 @@ from matplotlib.spines import Spine
 from matplotlib.projections.polar import PolarAxes
 from matplotlib.projections import register_projection
 
-RadarG=sys.argv[1]
-RadarQ=sys.argv[2]
-RadarS=sys.argv[3]
-RadarAll=sys.argv[4]
+RadarG= sys.argv[0]
+RadarQ= sys.argv[1]
+RadarS= sys.argv[2]
+RadarAll=sys.argv[3]
+TauxGQS=sys.argv[4]
+
 
 
 
@@ -165,11 +167,12 @@ if __name__ == '__main__':
 
     # add legend relative to top-left plot
     plt.subplot(2, 2, 1)
-    labels = ('Local', 'All')
-    legend = plt.legend(labels, loc=(0.9, .95), labelspacing=0.1)
+    labels = ('Local Knowledge', 'All Knowledge')
+    legend = plt.legend(labels, loc=(1, .95), labelspacing=0.1)
     plt.setp(legend.get_texts(), fontsize='small')
 
-    plt.figtext(0.5, 0.965, '5-Factor Solution Profiles Across Four Scenarios',
+    plt.figtext(0.5, 0.965, 'Green = '+ str(TauxGQS[0]) + '% Quick = '+ str(TauxGQS[1]) + '% Smooth = ' + str(TauxGQS[2]),
                 ha='center', color='black', weight='bold', size='large')
+    plt.show()
 
 
