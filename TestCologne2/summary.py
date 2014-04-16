@@ -159,19 +159,20 @@ else:
 ####################################################################
 
 #moyenne arithmetique tot
-MeanDurationAll=(TotalDuration/len(duration))/60
-MeanwaitStepsAll=TotalwaitSteps/len(duration)
-MeanFuelConsoAll=Totalfuel/len(duration)
+Allveh=ListSmooth+ListGreen+ListQuick
+MeanDurationAll=(TotalDuration/len(Allveh))/60
+MeanwaitStepsAll=TotalwaitSteps/len(Allveh)
+MeanFuelConsoAll=Totalfuel/len(Allveh)
 
 ####################################################################
 
 #maximum et minimum
-MaxTAll=max(MaxTGAll
-MaxWAll=float(max(waitSteps))
-MaxFAll=float(max(fuel))
-MinTAll=float(min(duration))
-MinWAll=float(min(waitSteps))
-MinFAll=float(min(fuel))
+MaxTAll=max(MaxTGAll,MaxTQAll,MaxTSAll)
+MaxWAll=max(MaxWGAll,MaxWQAll,MaxWSAll)
+MaxFAll=max(MaxFGAll,MaxFQAll,MaxFSAll)
+MinTAll=min(MinTGAll,MinTQAll,MinTSAll)
+MinWAll=min(MinWGAll,MinWQAll,MinWSAll)
+MinFAll=min(MinFGAll,MinFQAll,MinFSAll)
 
 
 

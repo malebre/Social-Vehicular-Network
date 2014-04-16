@@ -133,11 +133,11 @@ def example_data():
         'GreenWay':
             RadarG,
         'SmoothWay':
-            RadarG,
+            RadarS,
         'QuickWay':
-            RadarG,
+            RadarQ,
         'Global':
-            RadarG}
+            RadarAll}
     return data
 
 
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     # Plot the four cases from the example data on separate axes
     for n, title in enumerate(data.keys()):
         ax = fig.add_subplot(2, 2, n+1, projection='radar')
-        plt.rgrids([0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
+
         ax.set_title(title, weight='bold', size='medium', position=(0.5, 1.1),
                      horizontalalignment='center', verticalalignment='center')
         for d, color in zip(data[title], colors):

@@ -178,7 +178,7 @@ while i<len(duration):
 
 		#Temps Sans reroutage
 		if durationW[j]>WMaxTG:
-			WMaxTG=duration[j]
+			WMaxTG=durationW[j]
 		if durationW[j]<WMinTG:
 			WMinTG=durationW[j]
 		TotalDurationGreenW=TotalDurationGreenW+durationW[j]
@@ -324,6 +324,10 @@ if len(ListGreen)>0:
 	MeanDurationGreen=(TotalDurationGreen/len(ListGreen))/60
 	MeanwaitStepsGreen=TotalwaitStepsGreen/len(ListGreen)
 	MeanFuelConsoGreen=TotalfuelGreen/len(ListGreen)
+	print "MaxFG"
+	print MaxFG
+	print "MaxWG"
+	print MaxWG
 else:
 	MeanDurationGreen=0
 	MeanwaitStepsGreen=0
@@ -333,6 +337,10 @@ if len(ListGreen)>0:
 	MeanDurationGreenW=(TotalDurationGreenW/len(ListGreen))/60
 	MeanwaitStepsGreenW=TotalwaitStepsGreenW/len(ListGreen)
 	MeanFuelConsoGreenW=TotalfuelGreenW/len(ListGreen)
+	print "WMaxF"
+	print WMaxF
+	print "WMaxW"
+	print WMaxW
 else:
 	MeanDurationGreenW=0
 	MeanwaitStepsGreenW=0
@@ -346,6 +354,8 @@ if len(ListQuick)>0:
 	MeanDurationQuick=(TotalDurationQuick/len(ListQuick))/60
 	MeanwaitStepsQuick=TotalwaitStepsQuick/len(ListQuick)
 	MeanFuelConsoQuick=TotalfuelQuick/len(ListQuick)
+	print "MaxWQ"
+	print MaxWQ
 else:
 	MeanDurationQuick=0
 	MeanwaitStepsQuick=0
@@ -356,6 +366,8 @@ if len(ListQuick)>0:
 	MeanDurationQuickW=(TotalDurationQuickW/len(ListQuick))/60
 	MeanwaitStepsQuickW=TotalwaitStepsQuickW/len(ListQuick)
 	MeanFuelConsoQuickW=TotalfuelQuickW/len(ListQuick)
+	print "WMaxWQ"
+	print WMaxWQ
 else:
 	MeanDurationQuickW=0
 	MeanwaitStepsQuickW=0
