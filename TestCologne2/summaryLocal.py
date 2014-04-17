@@ -80,7 +80,7 @@ WMinT=WMinTG=WMinTQ=WMinTS=WMinW=WMinWG=WMinWQ=WMinWS=WMinF=WMinFG=WMinFQ=WMinFS
 #Debut calcul
 while i<len(duration):
 
-#Total
+#Total Avec reroutage
 
 #################################################################################
 
@@ -93,14 +93,6 @@ while i<len(duration):
 		MinT=duration[i]
 	TotalDuration=TotalDuration+duration[i]
 
-	#Temps total Sans reroutage
-
-	durationW[i]=float(durationW[i])
-	if durationW[i]>WMaxT:
-		WMaxT=durationW[i]
-	if durationW[i]<WMinT:
-		WMinT=durationW[i]
-	TotalDurationW=TotalDurationW+durationW[i]
 
 	#Temps total d'attente Avec reroutage
 
@@ -111,17 +103,6 @@ while i<len(duration):
 		MinW=waitSteps[i]
 	TotalwaitSteps=TotalwaitSteps+waitSteps[i]
 
-	#Temps total d'attente Sans reroutage
-
-	waitStepsW[i]=float(waitStepsW[i])
-	if waitStepsW[i]>WMaxW:
-		WMaxW=waitStepsW[i]
-	if waitStepsW[i]<WMinW:
-		WMinW=waitSteps[i]
-		if WMinW==0:
-			WMinW=1
-	TotalwaitStepsW=TotalwaitStepsW+waitStepsW[i]
-
 	#Consommation totale Avec reroutage
 
 	fuel[i]=float(fuel[i])
@@ -131,14 +112,8 @@ while i<len(duration):
 		MinF=fuel[i]
 	Totalfuel=Totalfuel+fuel[i]
 
-	#Consommation totale Sans reroutage
 
-	fuelW[i]=float(fuelW[i])
-	if fuelW[i]>WMaxF:
-		WMaxF=fuelW[i]
-	if fuelW[i]<WMinF:
-		WMinF=fuelW[i]
-	TotalfuelW=TotalfuelW+fuelW[i]
+
 
 #######################################################################
 
@@ -182,6 +157,7 @@ while i<len(duration):
 		if durationW[j]<WMinTG:
 			WMinTG=durationW[j]
 		TotalDurationGreenW=TotalDurationGreenW+durationW[j]
+		TotalDurationW=TotalDurationW+durationW[j]
 
 		#Temps d'attente Sans reroutage 
 		if waitStepsW[j]>WMaxWG:
@@ -189,6 +165,7 @@ while i<len(duration):
 		if waitStepsW[j]<WMinWG:
 			WMinWG=waitStepsW[j]
 		TotalwaitStepsGreenW=TotalwaitStepsGreen+waitStepsW[j]
+		TotalwaitStepsW=TotalwaitStepsW+waitStepsW[j]
 
 		#Consommation Sans reroutage
 		if fuelW[j]>WMaxFG:
@@ -196,6 +173,7 @@ while i<len(duration):
 		if fuelW[j]<WMinFG:
 			WMinFG=fuelW[j]
 		TotalfuelGreenW=TotalfuelGreenW+fuelW[j]
+		TotalfuelW=TotalfuelW+fuelW[j]
 
 #######################################################################
 
@@ -239,6 +217,7 @@ while i<len(duration):
 		if durationW[j]<WMinTQ:
 			WMinTQ=durationW[j]
 		TotalDurationQuickW=TotalDurationQuickW+durationW[j]
+		TotalDurationW=TotalDurationW+durationW[j]
 
 		#Temps d'attente Sans reroutage 
 		if waitStepsW[j]>WMaxWQ:
@@ -248,6 +227,7 @@ while i<len(duration):
 			if WMinWQ==0:
 				WMinWQ=1
 		TotalwaitStepsQuickW=TotalwaitStepsQuickW+waitStepsW[j]
+		TotalwaitStepsW=TotalwaitStepsW+waitStepsW[j]
 
 		#Consommation Sans reroutage
 		if fuelW[j]>WMaxFQ:
@@ -255,6 +235,7 @@ while i<len(duration):
 		if fuelW[j]<WMinFQ:
 			WMinFQ=fuelW[j]
 		TotalfuelQuickW=TotalfuelQuickW+fuelW[j]
+		TotalfuelW=TotalfuelW+fuelW[j]
 
 #######################################################################
 
@@ -299,6 +280,7 @@ while i<len(duration):
 		if durationW[j]<WMinTS:
 			WMinTS=durationW[i]
 		TotalDurationSmoothW=TotalDurationSmoothW+durationW[j]
+		TotalDurationW=TotalDurationW+durationW[j]
 
 		#Temps d'attente Sans reroutage 
 		if waitStepsW[j]>MaxWS:
@@ -306,14 +288,33 @@ while i<len(duration):
 		if waitStepsW[j]<MinWS:
 			WMinWS=waitStepsW[j]
 		TotalwaitStepsSmoothW=TotalwaitStepsSmoothW+waitStepsW[j]
+		TotalwaitStepsW=TotalwaitStepsW+waitStepsW[j]
 
 		#Consommation Sans reroutage
 		if fuelW[j]>WMaxFS:
 			WMaxFS=fuelW[j]
 		if fuelW[j]<WMinFS:
 			WMinFS=fuelW[j]
-		TotalfuelSmoothW=TotalfuelSmoothW+fuelW[j]			
+		TotalfuelSmoothW=TotalfuelSmoothW+fuelW[j]
+		TotalfuelW=TotalfuelW+fuelW[j]			
 	i=i+1
+
+#################################################################################
+
+#maximum et minimum
+
+#################################################################################
+
+
+
+WMaxT=max(WMaxTG,WMaxTQ,WMaxTS)
+WMinT=min(WMinTG,WMinTQ,WMinTS)
+WMaxW=max(WMaxWG,WMaxWQ,WMaxWS)
+WMinW=min(WMinWG,WMinWQ,WMinWS)
+WMaxF=max(WMaxFG,WMaxFQ,WMaxFS)
+WMinF=min(WMinFG,WMinFQ,WMinFS)
+
+
 
 #############################################################################################
 
