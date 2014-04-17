@@ -40,7 +40,7 @@ ListQuick=sys.argv[2]
 ListSmooth=sys.argv[3]
 List=ListGreen+ListQuick+ListSmooth
 
-print len(ListQuick)
+
 
 
 
@@ -324,10 +324,6 @@ if len(ListGreen)>0:
 	MeanDurationGreen=(TotalDurationGreen/len(ListGreen))/60
 	MeanwaitStepsGreen=TotalwaitStepsGreen/len(ListGreen)
 	MeanFuelConsoGreen=TotalfuelGreen/len(ListGreen)
-	print "MaxFG"
-	print MaxFG
-	print "MaxWG"
-	print MaxWG
 else:
 	MeanDurationGreen=0
 	MeanwaitStepsGreen=0
@@ -337,10 +333,6 @@ if len(ListGreen)>0:
 	MeanDurationGreenW=(TotalDurationGreenW/len(ListGreen))/60
 	MeanwaitStepsGreenW=TotalwaitStepsGreenW/len(ListGreen)
 	MeanFuelConsoGreenW=TotalfuelGreenW/len(ListGreen)
-	print "WMaxF"
-	print WMaxF
-	print "WMaxW"
-	print WMaxW
 else:
 	MeanDurationGreenW=0
 	MeanwaitStepsGreenW=0
@@ -354,8 +346,6 @@ if len(ListQuick)>0:
 	MeanDurationQuick=(TotalDurationQuick/len(ListQuick))/60
 	MeanwaitStepsQuick=TotalwaitStepsQuick/len(ListQuick)
 	MeanFuelConsoQuick=TotalfuelQuick/len(ListQuick)
-	print "MaxWQ"
-	print MaxWQ
 else:
 	MeanDurationQuick=0
 	MeanwaitStepsQuick=0
@@ -366,8 +356,6 @@ if len(ListQuick)>0:
 	MeanDurationQuickW=(TotalDurationQuickW/len(ListQuick))/60
 	MeanwaitStepsQuickW=TotalwaitStepsQuickW/len(ListQuick)
 	MeanFuelConsoQuickW=TotalfuelQuickW/len(ListQuick)
-	print "WMaxWQ"
-	print WMaxWQ
 else:
 	MeanDurationQuickW=0
 	MeanwaitStepsQuickW=0
@@ -424,7 +412,7 @@ MeanFuelConsoW=TotalfuelW/len(List)
 #print "la conso moyenne est de" + str(MeanFuelConso) + "ml"
 #print "Le parcours moyen en temps est " + str(MeanDuration) +" min"
 #print "Le temps moyen d'attente par vehicule est : " + str(MeanwaitSteps) +" s"
-print "Le nombre de vehicule est de : " + str(len(duration))
+#print "Le nombre de vehicule est de : " + str(len(duration))
 #print "maximum de temps d'attente :" + str(max(waitSteps)) + "s"
 #print "maximum temps de parcours :" + str(max(duration)/60) + "min"
 

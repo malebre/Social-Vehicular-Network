@@ -64,7 +64,7 @@ for density in Density:
 
 
 	#repartition selon les applis : [Green,Quick,Smooth]
-	listeCoeff=[[0,100,0],[12, 88, 0],[26, 49, 25]]
+	listeCoeff=[[84, 2, 14]]
 #[0,100,0],[12, 88, 0],[14, 82, 4],[18, 65, 17] [26, 49, 25],[62, 20, 18],[62, 30, 8],[70, 13, 17],[84, 2, 14],[97, 1, 2],[0,100,0],[39, 20, 41],[28, 16, 56],[29, 0, 71],[5, 4, 91],[0,0,100]]
 
 	b=0
@@ -198,6 +198,7 @@ for density in Density:
 ##############################################################################################################
 
 		#resultat : on compare au cas sans connaissance
+		sys.argv=["summary.py",ListGreen,ListQuick,ListSmooth]
 		execfile("summary.py")
 
 		#pour Green
