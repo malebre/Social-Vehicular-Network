@@ -276,9 +276,9 @@ while i<len(duration):
 
 		#Temps Sans reroutage
 		if durationW[j]>WMaxTS:
-			WMaxTS=durationW[i]
+			WMaxTS=durationW[j]
 		if durationW[j]<WMinTS:
-			WMinTS=durationW[i]
+			WMinTS=durationW[j]
 		TotalDurationSmoothW=TotalDurationSmoothW+durationW[j]
 		TotalDurationW=TotalDurationW+durationW[j]
 
