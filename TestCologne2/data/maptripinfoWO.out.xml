@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <!-- generated on Thu Apr 17 18:19:16 2014 by SUMO sumo Version dev-SVN-r15641
+=======
+<!-- generated on Thu Apr 17 18:17:08 2014 by SUMO sumo Version 0.19.0
+>>>>>>> adacbe0cc5a6e9d5b579a18701b1f5c076fbf01e
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo-sim.org/xsd/sumoConfiguration.xsd">
