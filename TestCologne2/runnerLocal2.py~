@@ -181,7 +181,7 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 				
 				#on retient la position
 				position=traci.vehicle.getRoute(vehID).index(traci.vehicle.getRoadID(vehID))
-				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID)))]
+				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID))-1)]
 
 				#recalcule chemin
 				traci.vehicle.rerouteEffort(vehID)
@@ -221,7 +221,7 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 
 				#on retient la position
 				position=traci.vehicle.getRoute(vehID).index(traci.vehicle.getRoadID(vehID))
-				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID)))]
+				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID))-1)]
 
 
 				#recalcule chemin
@@ -255,7 +255,7 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 
 				#on retient la position
 				position=traci.vehicle.getRoute(vehID).index(traci.vehicle.getRoadID(vehID))
-				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID)))]
+				Route=traci.vehicle.getRoute(vehID)[position:(len(traci.vehicle.getRoute(vehID))-1)]
 				
 				#recalcule du plus court chemin 
 				traci.vehicle.rerouteTraveltime(vehID)

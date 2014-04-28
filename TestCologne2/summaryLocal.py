@@ -313,6 +313,14 @@ WMaxW=max(WMaxWG,WMaxWQ,WMaxWS)
 WMinW=min(WMinWG,WMinWQ,WMinWS)
 WMaxF=max(WMaxFG,WMaxFQ,WMaxFS)
 WMinF=min(WMinFG,WMinFQ,WMinFS)
+print WMaxFG
+print WMaxFQ
+print WMaxFS
+
+print MaxFG
+print MaxFQ
+print MaxFS
+
 
 
 

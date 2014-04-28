@@ -271,7 +271,7 @@ def badConsoEdge(ConsoEdgeOut,MinConsoEdgeOut,ListEdgeOut,JuncId):
 	badConsoEdge=[]
 	#Liens sortants depassant le seuil de Consommation
 	while l<len(ListEdgeOut):
-		threshold = MinConsoEdgeOut[l]*1.5
+		threshold = MinConsoEdgeOut[l]*2.0
 		if (ConsoEdgeOut[l] >= threshold):
 			badConsoEdge.append(ListEdgeOut[l])
 		l=l+1
@@ -304,9 +304,9 @@ def slowAndbadConsoEdge(r,OccupancyEdgeOut,ConsoEdgeOut,MinConsoEdgeOut,ListEdge
 	l=0
 	while l<len(ListEdgeOut):
 		if MaxSpeedEdgeOut[l] <= 13.89:
-			threshold = r*0.20+(1-r)*MinConsoEdgeOut[l]*1.5
+			threshold = r*0.20+(1-r)*MinConsoEdgeOut[l]*2.0
 		if MaxSpeedEdgeOut[l] > 13.89:
-			threshold = r*0.16+(1-r)*MinConsoEdgeOut[l]*1.5
+			threshold = r*0.16+(1-r)*MinConsoEdgeOut[l]*2.0
 		measure=r*OccupancyEdgeOut[l]+(1-r)*ConsoEdgeOut[l]
 		#print ListEdgeOut[l]
 		#print OccupancyEdgeOut[l]
