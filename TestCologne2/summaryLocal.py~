@@ -15,6 +15,8 @@ duration=map(xmlAttr.getContent,ctxt.xpathEval("//@duration"))
 waitSteps=map(xmlAttr.getContent,ctxt.xpathEval("//@waitSteps"))
 fuel=map(xmlAttr.getContent,ctxt.xpathEval("//@fuel_abs"))
 veh=map(xmlAttr.getContent,ctxt.xpathEval("//@id"))
+print 'veh'
+print len(veh)
 
 #####################################################
 
@@ -30,6 +32,8 @@ durationW=map(xmlAttr.getContent,ctxtW.xpathEval("//@duration"))
 waitStepsW=map(xmlAttr.getContent,ctxtW.xpathEval("//@waitSteps"))
 fuelW=map(xmlAttr.getContent,ctxtW.xpathEval("//@fuel_abs"))
 vehW=map(xmlAttr.getContent,ctxtW.xpathEval("//@id"))
+print 'vehW'
+print len(vehW)
 
 #####################################################
 
@@ -39,6 +43,10 @@ ListGreen=sys.argv[1]
 ListQuick=sys.argv[2]
 ListSmooth=sys.argv[3]
 List=ListGreen+ListQuick+ListSmooth
+
+Quick=[]
+Green=[]
+Smooth=[]
 
 
 
@@ -122,7 +130,7 @@ while i<len(duration):
 #######################################################################
 
 	if veh[i] in ListGreen:
-		
+		Green.append(veh[i])		
 		#Temps Avec reroutage Local
 		j=vehW.index(veh[i])
 		if duration[i]>MaxTG:
@@ -183,7 +191,7 @@ while i<len(duration):
 
 
 	if veh[i] in ListQuick:
-
+		Quick.append(veh[i])
 		#Temps Avec reroutage Local
 		j=vehW.index(veh[i])
 		if duration[i]>MaxTQ:
@@ -246,7 +254,7 @@ while i<len(duration):
 
 	if veh[i] in ListSmooth:
 		j=vehW.index(veh[i])
-
+		Smooth.append(veh[i])
 		#Temps Avec reroutage Local
 		if duration[i]>MaxTS:
 			MaxTS=duration[i]
@@ -313,13 +321,7 @@ WMaxW=max(WMaxWG,WMaxWQ,WMaxWS)
 WMinW=min(WMinWG,WMinWQ,WMinWS)
 WMaxF=max(WMaxFG,WMaxFQ,WMaxFS)
 WMinF=min(WMinFG,WMinFQ,WMinFS)
-print WMaxFG
-print WMaxFQ
-print WMaxFS
 
-print MaxFG
-print MaxFQ
-print MaxFS
 
 
 
@@ -407,6 +409,20 @@ MeanFuelConso=Totalfuel/len(List)
 MeanDurationW=(TotalDurationW/len(List))/60
 MeanwaitStepsW=TotalwaitStepsW/len(List)
 MeanFuelConsoW=TotalfuelW/len(List)
+
+
+print '----------'
+print 'Smooth loc'
+print len(ListSmooth)
+print len(Smooth)
+print 'Quick loc'
+print len(ListQuick)
+print len(Quick)
+print 'Green loc'
+print len(ListGreen)
+print len(Green)
+
+print '-------------'
 
 
 

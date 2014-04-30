@@ -13,6 +13,8 @@ waitSteps= map(xmlAttr.getContent,ctxt.xpathEval("//@waitSteps"))
 fuel=map(xmlAttr.getContent,ctxt.xpathEval("//@fuel_abs"))
 #id des vehicules
 veh=map(xmlAttr.getContent,ctxt.xpathEval("//@id"))
+print 'vehtout'
+print len(veh)
 
 ####################################################################
 
@@ -21,6 +23,10 @@ veh=map(xmlAttr.getContent,ctxt.xpathEval("//@id"))
 ListGreen=sys.argv[1]
 ListQuick=sys.argv[2]
 ListSmooth=sys.argv[3]
+
+Green=[]
+Quick=[]
+Smooth=[]
 
 ####################################################################
 
@@ -47,6 +53,7 @@ while i<len(duration):
 	#Green
 	if veh[i] in ListGreen:
 		#temps
+		Green.append(veh[i])
 		duration[i]=float(duration[i])
 		if duration[i]>MaxTGAll:
 			MaxTGAll=duration[i]
@@ -74,6 +81,7 @@ while i<len(duration):
 	#Quick
 	if veh[i] in ListQuick:
 		#temps
+		Quick.append(veh[i])
 		duration[i]=float(duration[i])
 		if duration[i]>MaxTQAll:
 			MaxTQAll=duration[i]
@@ -100,6 +108,7 @@ while i<len(duration):
 
 	#Smooth
 	if veh[i] in ListSmooth:
+		Smooth.append(veh[i])
 		#temps
 		duration[i]=float(duration[i])
 		if duration[i]>MaxTSAll:
@@ -173,6 +182,16 @@ MaxFAll=max(MaxFGAll,MaxFQAll,MaxFSAll)
 MinTAll=min(MinTGAll,MinTQAll,MinTSAll)
 MinWAll=min(MinWGAll,MinWQAll,MinWSAll)
 MinFAll=min(MinFGAll,MinFQAll,MinFSAll)
+
+print 'Smooth'
+print len(ListSmooth)
+print len(Smooth)
+print 'Quick'
+print len(ListQuick)
+print len(Quick)
+print 'Green'
+print len(ListGreen)
+print len(Green)
 
 
 

@@ -58,12 +58,15 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 	CurrentRoad=traci.vehicle.getRoadID(vehID)
 	if CurrentRoad in traci.vehicle.getRoute(vehID):
 		ListeCurrentRoad[ListevehID.index(vehID)].append(CurrentRoad)
-		l=len(ListeCurrentRoad[ListevehID.index(vehID)])
+		l=len(ListeCurrentRoad[ListevehID.index(vehID)])-1
 		
 		#le vehicule change de lien
-		if l>3 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]!=ListeCurrentRoad[ListevehID.index(vehID)][l-3] and Done[ListevehID.index(vehID)]!='ok':
+		if l==1:
+			traci.vehicle.rerouteTraveltime(vehID)
+		if l>2 and ListeCurrentRoad[ListevehID.index(vehID)][l]!=ListeCurrentRoad[ListevehID.index(vehID)][l-2] and Done[ListevehID.index(vehID)]!='ok':
        			traci.vehicle.rerouteTraveltime(vehID)
 			Done[ListevehID.index(vehID)]='ok'
+
 
 		#le vehicule ne change pas de lien
 		if l>2 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]==ListeCurrentRoad[ListevehID.index(vehID)][l-2]:
@@ -93,10 +96,14 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 		ListeCurrentRoad[ListevehID.index(vehID)].append(CurrentRoad)
 		l=len(ListeCurrentRoad[ListevehID.index(vehID)])
 		
+		if l==1:
+			traci.vehicle.rerouteEffort(vehID)
+		
 		#le vehicule change de lien
 		if l>3 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]!=ListeCurrentRoad[ListevehID.index(vehID)][l-3] and Done[ListevehID.index(vehID)]!='ok':
        			traci.vehicle.rerouteEffort(vehID)
 			Done[ListevehID.index(vehID)]='ok'
+			print "ko"
 
 		#le vehicule ne change pas de lien
 		if l>2 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]==ListeCurrentRoad[ListevehID.index(vehID)][l-2]:
@@ -122,16 +129,21 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 	if CurrentRoad in traci.vehicle.getRoute(vehID):
 		ListeCurrentRoad[ListevehID.index(vehID)].append(CurrentRoad)
 		l=len(ListeCurrentRoad[ListevehID.index(vehID)])
+
+		for edge in traci.edge.getIDList():
+				r=Compromis[ListSmooth.index(vehID)]
+				measure=r*traci.edge.getTraveltime(edge)+(1-r)*traci.edge.getFuelConsumption(edge)	
+				traci.edge.setEffort(edge,measure)
+
+		if l==1:
+			traci.vehicle.rerouteEffort(vehID)
 		
 		#le vehicule change de lien
 		if l>3 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]!=ListeCurrentRoad[ListevehID.index(vehID)][l-3] and Done[ListevehID.index(vehID)]!='ok':
 			   #changement du poids de chaque lien de la carte
-    			for edge in traci.edge.getIDList():
-				r=Compromis[ListSmooth.index(vehID)]
-				measure=r*traci.edge.getTraveltime(edge)+(1-r)*traci.edge.getFuelConsumption(edge)	
-				traci.edge.setEffort(edge,measure)
        			traci.vehicle.rerouteEffort(vehID)
 			Done[ListevehID.index(vehID)]='ok'
+			print "jo"
 
 		#le vehicule ne change pas de lien
 		if l>2 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]==ListeCurrentRoad[ListevehID.index(vehID)][l-2]:

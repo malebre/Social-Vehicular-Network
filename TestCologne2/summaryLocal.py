@@ -15,6 +15,8 @@ duration=map(xmlAttr.getContent,ctxt.xpathEval("//@duration"))
 waitSteps=map(xmlAttr.getContent,ctxt.xpathEval("//@waitSteps"))
 fuel=map(xmlAttr.getContent,ctxt.xpathEval("//@fuel_abs"))
 veh=map(xmlAttr.getContent,ctxt.xpathEval("//@id"))
+print 'veh'
+print len(veh)
 
 #####################################################
 
@@ -30,6 +32,8 @@ durationW=map(xmlAttr.getContent,ctxtW.xpathEval("//@duration"))
 waitStepsW=map(xmlAttr.getContent,ctxtW.xpathEval("//@waitSteps"))
 fuelW=map(xmlAttr.getContent,ctxtW.xpathEval("//@fuel_abs"))
 vehW=map(xmlAttr.getContent,ctxtW.xpathEval("//@id"))
+print 'vehW'
+print len(vehW)
 
 #####################################################
 
@@ -38,7 +42,10 @@ vehW=map(xmlAttr.getContent,ctxtW.xpathEval("//@id"))
 ListGreen=sys.argv[1]
 ListQuick=sys.argv[2]
 ListSmooth=sys.argv[3]
-List=ListGreen+ListQuick+ListSmooth
+
+Quick=[]
+Green=[]
+Smooth=[]
 
 
 
@@ -122,7 +129,7 @@ while i<len(duration):
 #######################################################################
 
 	if veh[i] in ListGreen:
-		
+		Green.append(veh[i])		
 		#Temps Avec reroutage Local
 		j=vehW.index(veh[i])
 		if duration[i]>MaxTG:
@@ -183,7 +190,7 @@ while i<len(duration):
 
 
 	if veh[i] in ListQuick:
-
+		Quick.append(veh[i])
 		#Temps Avec reroutage Local
 		j=vehW.index(veh[i])
 		if duration[i]>MaxTQ:
@@ -246,7 +253,7 @@ while i<len(duration):
 
 	if veh[i] in ListSmooth:
 		j=vehW.index(veh[i])
-
+		Smooth.append(veh[i])
 		#Temps Avec reroutage Local
 		if duration[i]>MaxTS:
 			MaxTS=duration[i]
@@ -323,19 +330,19 @@ WMinF=min(WMinFG,WMinFQ,WMinFS)
 #Moyenne Application Green
 #Avec
 
-if len(ListGreen)>0:
-	MeanDurationGreen=(TotalDurationGreen/len(ListGreen))/60
-	MeanwaitStepsGreen=TotalwaitStepsGreen/len(ListGreen)
-	MeanFuelConsoGreen=TotalfuelGreen/len(ListGreen)
+if len(Green)>0:
+	MeanDurationGreen=(TotalDurationGreen/len(Green))/60
+	MeanwaitStepsGreen=TotalwaitStepsGreen/len(Green)
+	MeanFuelConsoGreen=TotalfuelGreen/len(Green)
 else:
 	MeanDurationGreen=0
 	MeanwaitStepsGreen=0
 	MeanFuelConsoGreen=0
 #Sans
-if len(ListGreen)>0:
-	MeanDurationGreenW=(TotalDurationGreenW/len(ListGreen))/60
-	MeanwaitStepsGreenW=TotalwaitStepsGreenW/len(ListGreen)
-	MeanFuelConsoGreenW=TotalfuelGreenW/len(ListGreen)
+if len(Green)>0:
+	MeanDurationGreenW=(TotalDurationGreenW/len(Green))/60
+	MeanwaitStepsGreenW=TotalwaitStepsGreenW/len(Green)
+	MeanFuelConsoGreenW=TotalfuelGreenW/len(Green)
 else:
 	MeanDurationGreenW=0
 	MeanwaitStepsGreenW=0
@@ -345,20 +352,20 @@ else:
 
 #Moyenne Application Quick
 #Avec
-if len(ListQuick)>0:
-	MeanDurationQuick=(TotalDurationQuick/len(ListQuick))/60
-	MeanwaitStepsQuick=TotalwaitStepsQuick/len(ListQuick)
-	MeanFuelConsoQuick=TotalfuelQuick/len(ListQuick)
+if len(Quick)>0:
+	MeanDurationQuick=(TotalDurationQuick/len(Quick))/60
+	MeanwaitStepsQuick=TotalwaitStepsQuick/len(Quick)
+	MeanFuelConsoQuick=TotalfuelQuick/len(Quick)
 else:
 	MeanDurationQuick=0
 	MeanwaitStepsQuick=0
 	MeanFuelConsoQuick=0
 
 #Sans
-if len(ListQuick)>0:
-	MeanDurationQuickW=(TotalDurationQuickW/len(ListQuick))/60
-	MeanwaitStepsQuickW=TotalwaitStepsQuickW/len(ListQuick)
-	MeanFuelConsoQuickW=TotalfuelQuickW/len(ListQuick)
+if len(Quick)>0:
+	MeanDurationQuickW=(TotalDurationQuickW/len(Quick))/60
+	MeanwaitStepsQuickW=TotalwaitStepsQuickW/len(Quick)
+	MeanFuelConsoQuickW=TotalfuelQuickW/len(Quick)
 else:
 	MeanDurationQuickW=0
 	MeanwaitStepsQuickW=0
@@ -369,20 +376,20 @@ else:
 #Moyenne Application Smooth
 
 #Avec
-if len(ListSmooth)>0:
-	MeanDurationSmooth=(TotalDurationSmooth/len(ListSmooth))/60
-	MeanwaitStepsSmooth=TotalwaitStepsSmooth/len(ListSmooth)
-	MeanFuelConsoSmooth=TotalfuelSmooth/len(ListSmooth)
+if len(Smooth)>0:
+	MeanDurationSmooth=(TotalDurationSmooth/len(Smooth))/60
+	MeanwaitStepsSmooth=TotalwaitStepsSmooth/len(Smooth)
+	MeanFuelConsoSmooth=TotalfuelSmooth/len(Smooth)
 else:
 	MeanDurationSmooth=0
 	MeanwaitStepsSmooth=0
 	MeanFuelConsoSmooth=0
 
 #Sans
-if len(ListSmooth)>0:
-	MeanDurationSmoothW=(TotalDurationSmoothW/len(ListSmooth))/60
-	MeanwaitStepsSmoothW=TotalwaitStepsSmoothW/len(ListSmooth)
-	MeanFuelConsoSmoothW=TotalfuelSmoothW/len(ListSmooth)
+if len(Smooth)>0:
+	MeanDurationSmoothW=(TotalDurationSmoothW/len(Smooth))/60
+	MeanwaitStepsSmoothW=TotalwaitStepsSmoothW/len(Smooth)
+	MeanFuelConsoSmoothW=TotalfuelSmoothW/len(Smooth)
 else:
 	MeanDurationSmoothW=0
 	MeanwaitStepsSmoothW=0
@@ -391,6 +398,7 @@ else:
 #############################################################################################
 
 #Moyenne Total
+List=Green+Quick+Smooth
 
 #Avec
 MeanDuration=(TotalDuration/len(List))/60
@@ -401,6 +409,22 @@ MeanFuelConso=Totalfuel/len(List)
 MeanDurationW=(TotalDurationW/len(List))/60
 MeanwaitStepsW=TotalwaitStepsW/len(List)
 MeanFuelConsoW=TotalfuelW/len(List)
+
+
+
+
+print '----------'
+print 'Smooth loc'
+print len(ListSmooth)
+print len(Smooth)
+print 'Quick loc'
+print len(ListQuick)
+print len(Quick)
+print 'Green loc'
+print len(ListGreen)
+print len(Green)
+
+print '-------------'
 
 
 

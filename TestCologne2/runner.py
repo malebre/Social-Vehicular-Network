@@ -103,7 +103,7 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 		if l>3 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]!=ListeCurrentRoad[ListevehID.index(vehID)][l-3] and Done[ListevehID.index(vehID)]!='ok':
        			traci.vehicle.rerouteEffort(vehID)
 			Done[ListevehID.index(vehID)]='ok'
-			print "ko"
+
 
 		#le vehicule ne change pas de lien
 		if l>2 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]==ListeCurrentRoad[ListevehID.index(vehID)][l-2]:
@@ -143,7 +143,7 @@ while step == 0 or traci.simulation.getMinExpectedNumber() > 0:
 			   #changement du poids de chaque lien de la carte
        			traci.vehicle.rerouteEffort(vehID)
 			Done[ListevehID.index(vehID)]='ok'
-			print "jo"
+
 
 		#le vehicule ne change pas de lien
 		if l>2 and ListeCurrentRoad[ListevehID.index(vehID)][l-1]==ListeCurrentRoad[ListevehID.index(vehID)][l-2]:
