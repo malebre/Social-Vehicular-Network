@@ -138,37 +138,37 @@ while i<len(duration):
 ####################################################################
 
 #moyenne arithmetique Green
-if len(ListGreen)>0:
-	MeanDurationGreenAll=(TotalDurationGreen/len(ListGreen))/60
-	MeanwaitStepsGreenAll=TotalwaitStepsGreen/len(ListGreen)
-	MeanFuelConsoGreenAll=TotalfuelGreen/len(ListGreen)
+if len(Green)>0:
+	MeanDurationGreenAll=(TotalDurationGreen/len(Green))/60
+	MeanwaitStepsGreenAll=TotalwaitStepsGreen/len(Green)
+	MeanFuelConsoGreenAll=TotalfuelGreen/len(Green)
 else:
 	MeanDurationGreenAll=MeanwaitStepsGreenAll=MeanFuelConsoGreenAll=0
 
 ####################################################################
 
 #moyenne arithmetique Quick
-if len(ListQuick)>0:
-	MeanDurationQuickAll=(TotalDurationQuick/len(ListQuick))/60
-	MeanwaitStepsQuickAll=TotalwaitStepsQuick/len(ListQuick)
-	MeanFuelConsoQuickAll=TotalfuelQuick/len(ListQuick)
+if len(Quick)>0:
+	MeanDurationQuickAll=(TotalDurationQuick/len(Quick))/60
+	MeanwaitStepsQuickAll=TotalwaitStepsQuick/len(Quick)
+	MeanFuelConsoQuickAll=TotalfuelQuick/len(Quick)
 else:
 	MeanDurationQuickAll=MeanwaitStepsQuickAll=MeanFuelConsoQuickAll=0
 
 ####################################################################
 
 #moyenne arithmetique Smooth
-if len(ListSmooth)>0:
-	MeanDurationSmoothAll=(TotalDurationSmooth/len(ListSmooth))/60
-	MeanwaitStepsSmoothAll=TotalwaitStepsSmooth/len(ListSmooth)
-	MeanFuelConsoSmoothAll=TotalfuelSmooth/len(ListSmooth)
+if len(Smooth)>0:
+	MeanDurationSmoothAll=(TotalDurationSmooth/len(Smooth))/60
+	MeanwaitStepsSmoothAll=TotalwaitStepsSmooth/len(Smooth)
+	MeanFuelConsoSmoothAll=TotalfuelSmooth/len(Smooth)
 else:
 	MeanDurationSmoothAll=MeanwaitStepsSmoothAll=MeanFuelConsoSmoothAll=0
 
 ####################################################################
 
 #moyenne arithmetique tot
-Allveh=ListSmooth+ListGreen+ListQuick
+Allveh=Smooth+Green+Quick
 MeanDurationAll=(TotalDuration/len(Allveh))/60
 MeanwaitStepsAll=TotalwaitSteps/len(Allveh)
 MeanFuelConsoAll=Totalfuel/len(Allveh)
@@ -192,6 +192,7 @@ print len(Quick)
 print 'Green'
 print len(ListGreen)
 print len(Green)
+print MaxFAll
 
 
 
