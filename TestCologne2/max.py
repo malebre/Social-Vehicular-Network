@@ -10,7 +10,7 @@ ctxt=doc.xpathNewContext()
 #coordonnees des intersections autre que les feux
 Ftout=map(xmlAttr.getContent,ctxt.xpathEval("//@fuel_abs"))
 veh=map(xmlAttr.getContent,ctxt.xpathEval("//@id"))
-
+print len(veh)
 
 doc=libxml2.parseFile("data/maptripinfoWO.out.xml")
 ctxt=doc.xpathNewContext()
